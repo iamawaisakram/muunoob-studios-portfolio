@@ -1,9 +1,13 @@
 'use client'
 
+import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, ExternalLink } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import SectionWrapper, { SectionHeader } from '@/components/ui/SectionWrapper'
-import { CASE_STUDIES } from '@/lib/constants'
+import { getCaseStudiesForListing } from '@/lib/case-studies'
+
+const caseStudies = getCaseStudiesForListing()
 
 export default function CaseStudies() {
   return (
@@ -18,7 +22,7 @@ export default function CaseStudies() {
       />
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {CASE_STUDIES.map((project, index) => (
+        {caseStudies.map((project, index) => (
           <motion.div
             key={project.id}
             className="group relative overflow-hidden rounded-2xl border border-light-300 bg-white shadow-soft"
@@ -29,25 +33,22 @@ export default function CaseStudies() {
             whileHover={{ y: -10 }}
           >
             {/* Project Image */}
-            <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-mint/30">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-display text-4xl font-bold text-white/80">
-                  {project.title.charAt(0)}
-                </span>
-              </div>
+            <Link href={project.link} className="block relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-mint/30">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
               {/* Overlay on hover */}
               <div className="absolute inset-0 flex items-center justify-center bg-primary/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <motion.a
-                  href={project.link}
-                  className="flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-primary"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View Project
-                  <ExternalLink size={16} />
-                </motion.a>
+                <span className="flex items-center gap-2 rounded-full bg-white px-6 py-3 font-medium text-primary">
+                  View Case Study
+                  <ArrowRight size={16} />
+                </span>
               </div>
-            </div>
+            </Link>
 
             {/* Content */}
             <div className="p-6">

@@ -1,20 +1,23 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, ExternalLink, Filter } from 'lucide-react'
+import { ArrowRight, Filter } from 'lucide-react'
 import { Navbar, Footer } from '@/components/layout'
-import { CASE_STUDIES } from '@/lib/constants'
+import { getCaseStudiesForListing } from '@/lib/case-studies'
 import { cn } from '@/lib/utils'
 
-const categories = ['All', ...Array.from(new Set(CASE_STUDIES.map(study => study.category)))]
+const caseStudies = getCaseStudiesForListing()
+const categories = ['All', ...Array.from(new Set(caseStudies.map(study => study.category)))]
 
 export default function CaseStudiesPage() {
   const [activeCategory, setActiveCategory] = useState('All')
 
   const filteredStudies = activeCategory === 'All'
-    ? CASE_STUDIES
-    : CASE_STUDIES.filter(study => study.category === activeCategory)
+    ? caseStudies
+    : caseStudies.filter(study => study.category === activeCategory)
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-light">
@@ -108,13 +111,15 @@ export default function CaseStudiesPage() {
                 >
                   {/* Image */}
                   <div className="relative h-48 bg-gradient-to-br from-primary/20 to-secondary/20 overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="font-display text-3xl font-bold text-white/60">
-                        {study.title}
-                      </span>
-                    </div>
+                    <Image
+                      src={study.image}
+                      alt={study.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
                     <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <ExternalLink className="w-8 h-8 text-white" />
+                      <ArrowRight className="w-8 h-8 text-white" />
                     </div>
                   </div>
 
@@ -149,12 +154,12 @@ export default function CaseStudiesPage() {
                       )}
                     </div>
 
-                    <a
+                    <Link
                       href={study.link}
                       className="inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-3 transition-all"
                     >
                       View Case Study <ArrowRight size={16} />
-                    </a>
+                    </Link>
                   </div>
                 </motion.div>
               </motion.div>

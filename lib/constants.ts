@@ -149,11 +149,11 @@ export const CASE_STUDIES = [
   {
     id: 4,
     title: 'Earlier Than This',
-    category: 'Productivity',
-    description: 'Time management and scheduling application for professionals.',
-    image: '/projects/earlier-than-this.jpg',
-    technologies: ['Next.js', 'PostgreSQL', 'TypeScript'],
-    link: '#',
+    category: 'Education',
+    description: 'An interactive historical exploration platform featuring country timelines, historical essays, and community contributions to discover world history.',
+    image: '/projects/earlier-than-this.png',
+    technologies: ['Next.js', 'TypeScript', 'Mantine UI', 'PostgreSQL'],
+    link: 'https://earlierthanthis.vercel.app/',
   },
   {
     id: 5,
