@@ -2,27 +2,37 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight, MessageCircle, Calendar, Mail } from 'lucide-react'
-import Button from '@/components/ui/Button'
+import { ThemeType } from '@/lib/theme'
+import { cn } from '@/lib/utils'
 
 interface ServiceCTAProps {
   title?: string
   subtitle?: string
   serviceName?: string
+  theme?: ThemeType
 }
 
 export default function ServiceCTA({
   title = "Ready to Get Started?",
   subtitle = "Let's discuss your project and see how we can help you achieve your goals.",
   serviceName,
+  theme = 'development',
 }: ServiceCTAProps) {
+  // Theme-specific gradient classes
+  const bgGradientClass = {
+    development: 'bg-gradient-to-br from-primary via-primary-600 to-secondary',
+    analytics: 'bg-gradient-to-br from-analytics via-analytics-600 to-analytics-secondary',
+    creative: 'bg-gradient-to-br from-creative via-creative-600 to-creative-secondary',
+  }[theme]
+
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-secondary py-24">
+    <section className={cn("relative overflow-hidden py-24", bgGradientClass)}>
       {/* Decorative elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute -left-20 top-1/4 h-64 w-64 rounded-full bg-white blur-3xl" />
         <div className="absolute -right-20 bottom-1/4 h-80 w-80 rounded-full bg-white blur-3xl" />
       </div>
-      
+
       {/* Dot pattern */}
       <div className="absolute inset-0" style={{
         backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)',
@@ -135,4 +145,3 @@ export default function ServiceCTA({
     </section>
   )
 }
-

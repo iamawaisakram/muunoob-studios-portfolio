@@ -5,6 +5,8 @@ import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import SectionWrapper, { SectionHeader } from '@/components/ui/SectionWrapper'
 import { SubService } from '@/lib/services'
+import { ThemeType } from '@/lib/theme'
+import { cn } from '@/lib/utils'
 
 interface SubServiceGridProps {
   title?: string
@@ -14,6 +16,7 @@ interface SubServiceGridProps {
     name: string
     services: SubService[]
   }[]
+  theme?: ThemeType
 }
 
 export default function SubServiceGrid({
@@ -21,10 +24,66 @@ export default function SubServiceGrid({
   subtitle = "Explore our comprehensive range of solutions",
   serviceSlug,
   subCategories,
+  theme = 'development',
 }: SubServiceGridProps) {
+  // Theme-specific classes
+  const headerGradientClass = {
+    development: 'bg-gradient-to-r from-primary to-secondary',
+    analytics: 'bg-gradient-to-r from-analytics to-analytics-secondary',
+    creative: 'bg-gradient-to-r from-creative to-creative-secondary',
+  }[theme]
+
+  const cardHoverGradientClass = {
+    development: 'bg-gradient-to-br from-primary/5 via-transparent to-mint/10',
+    analytics: 'bg-gradient-to-br from-analytics/5 via-transparent to-analytics-mint/10',
+    creative: 'bg-gradient-to-br from-creative/5 via-transparent to-creative-mint/10',
+  }[theme]
+
+  const cornerDecorationClass = {
+    development: 'bg-primary/5 group-hover:bg-primary/10',
+    analytics: 'bg-analytics/5 group-hover:bg-analytics/10',
+    creative: 'bg-creative/5 group-hover:bg-creative/10',
+  }[theme]
+
+  const iconBgClass = {
+    development: 'bg-gradient-to-br from-primary/10 to-mint/20',
+    analytics: 'bg-gradient-to-br from-analytics/10 to-analytics-mint/20',
+    creative: 'bg-gradient-to-br from-creative/10 to-creative-mint/20',
+  }[theme]
+
+  const iconInnerClass = {
+    development: 'bg-primary/20',
+    analytics: 'bg-analytics/20',
+    creative: 'bg-creative/20',
+  }[theme]
+
+  const titleHoverClass = {
+    development: 'group-hover:text-primary',
+    analytics: 'group-hover:text-analytics',
+    creative: 'group-hover:text-creative',
+  }[theme]
+
+  const linkColorClass = {
+    development: 'text-primary',
+    analytics: 'text-analytics',
+    creative: 'text-creative',
+  }[theme]
+
+  const bottomAccentClass = {
+    development: 'bg-gradient-to-r from-primary to-secondary',
+    analytics: 'bg-gradient-to-r from-analytics to-analytics-secondary',
+    creative: 'bg-gradient-to-r from-creative to-creative-secondary',
+  }[theme]
+
+  const bgSectionClass = {
+    development: 'bg-light-200',
+    analytics: 'bg-gradient-to-b from-analytics-mint/5 to-light-200',
+    creative: 'bg-gradient-to-b from-creative-mint/5 to-light-200',
+  }[theme]
+
   return (
-    <SectionWrapper className="bg-light-200" id="services">
-      <SectionHeader title={title} subtitle={subtitle} />
+    <SectionWrapper className={bgSectionClass} id="services">
+      <SectionHeader title={title} subtitle={subtitle} theme={theme} />
 
       <div className="space-y-16">
         {subCategories.map((category, catIndex) => (
@@ -37,7 +96,7 @@ export default function SubServiceGrid({
           >
             {/* Category Header */}
             <h3 className="font-display text-2xl font-semibold text-text-primary mb-8 flex items-center gap-3">
-              <span className="w-12 h-1 bg-gradient-to-r from-primary to-secondary rounded-full" />
+              <span className={cn("w-12 h-1 rounded-full", headerGradientClass)} />
               {category.name}
             </h3>
 
@@ -58,18 +117,18 @@ export default function SubServiceGrid({
                       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     >
                       {/* Background gradient on hover */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-mint/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      
+                      <div className={cn("absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500", cardHoverGradientClass)} />
+
                       {/* Corner decoration */}
-                      <div className="absolute -right-10 -top-10 w-24 h-24 rounded-full bg-primary/5 group-hover:bg-primary/10 transition-colors duration-500" />
+                      <div className={cn("absolute -right-10 -top-10 w-24 h-24 rounded-full transition-colors duration-500", cornerDecorationClass)} />
 
                       <div className="relative z-10">
                         {/* Icon placeholder */}
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-mint/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                          <div className="w-6 h-6 rounded-full bg-primary/20" />
+                        <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300", iconBgClass)}>
+                          <div className={cn("w-6 h-6 rounded-full", iconInnerClass)} />
                         </div>
 
-                        <h4 className="font-display text-lg font-semibold text-text-primary mb-2 group-hover:text-primary transition-colors">
+                        <h4 className={cn("font-display text-lg font-semibold text-text-primary mb-2 transition-colors", titleHoverClass)}>
                           {service.name}
                         </h4>
 
@@ -77,13 +136,13 @@ export default function SubServiceGrid({
                           {service.shortDescription}
                         </p>
 
-                        <span className="inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-3 transition-all">
+                        <span className={cn("inline-flex items-center gap-2 text-sm font-medium group-hover:gap-3 transition-all", linkColorClass)}>
                           Learn More <ArrowRight size={16} />
                         </span>
                       </div>
 
                       {/* Bottom accent */}
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                      <div className={cn("absolute bottom-0 left-0 right-0 h-1 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left", bottomAccentClass)} />
                     </motion.div>
                   </Link>
                 </motion.div>
@@ -95,4 +154,3 @@ export default function SubServiceGrid({
     </SectionWrapper>
   )
 }
-

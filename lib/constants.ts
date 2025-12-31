@@ -26,13 +26,13 @@ export const COMPANY_DESCRIPTION =
 
 // Navigation structure with dropdowns
 export const NAV_LINKS = [
-  { name: 'About Us', href: '#about', hasDropdown: false },
+  { name: 'About Us', href: '/about', hasDropdown: false },
   { name: 'Development', href: '#development', hasDropdown: true },
   { name: 'Business Analytics', href: '#business-analytics', hasDropdown: true },
   { name: 'Creative', href: '#creative', hasDropdown: true },
-  { name: 'Case Studies', href: '#case-studies', hasDropdown: false },
-  { name: 'Hire a Resource', href: '#hire-resource', hasDropdown: false },
-  { name: 'Who We Help', href: '#industries', hasDropdown: false },
+  { name: 'Case Studies', href: '/case-studies', hasDropdown: false },
+  { name: 'Hire a Resource', href: '/hire-resource', hasDropdown: false },
+  { name: 'Who We Help', href: '/who-we-help', hasDropdown: false },
 ]
 
 // Development Services Dropdown
@@ -501,20 +501,20 @@ export const CONTACT_INFO = {
 
 export const FOOTER_LINKS = {
   company: [
-    { name: 'About Us', href: '#about' },
-    { name: 'Case Studies', href: '#case-studies' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Case Studies', href: '/case-studies' },
     { name: 'Careers', href: '#' },
     { name: 'Contact', href: '#contact' },
   ],
   services: [
-    { name: 'Development', href: '#development' },
-    { name: 'Business Analytics', href: '#business-analytics' },
-    { name: 'Creative Services', href: '#creative' },
-    { name: 'Hire a Resource', href: '#hire-resource' },
+    { name: 'Development', href: '/services/development' },
+    { name: 'Business Analytics', href: '/services/business-analytics' },
+    { name: 'Creative Services', href: '/services/creative' },
+    { name: 'Hire a Resource', href: '/hire-resource' },
   ],
   resources: [
     { name: 'Blog', href: '#' },
-    { name: 'Who We Help', href: '#industries' },
+    { name: 'Who We Help', href: '/who-we-help' },
     { name: 'Documentation', href: '#' },
     { name: 'Support', href: '#' },
   ],

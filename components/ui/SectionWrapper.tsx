@@ -3,6 +3,7 @@
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import { ReactNode, memo } from 'react'
+import { ThemeType } from '@/lib/theme'
 
 interface SectionWrapperProps {
   children: ReactNode
@@ -38,6 +39,7 @@ interface SectionHeaderProps {
   subtitle?: string
   centered?: boolean
   className?: string
+  theme?: ThemeType
 }
 
 export const SectionHeader = memo(function SectionHeader({
@@ -45,7 +47,14 @@ export const SectionHeader = memo(function SectionHeader({
   subtitle,
   centered = true,
   className,
+  theme = 'development',
 }: SectionHeaderProps) {
+  const textGradientClass = {
+    development: 'text-gradient',
+    analytics: 'text-gradient-analytics',
+    creative: 'text-gradient-creative',
+  }[theme]
+
   return (
     <motion.div
       className={cn('mb-16', centered && 'text-center', className)}
@@ -55,7 +64,7 @@ export const SectionHeader = memo(function SectionHeader({
       transition={{ duration: 0.6 }}
     >
       <h2 className="mb-6 font-display text-4xl font-bold md:text-5xl lg:text-6xl">
-        <span className="text-gradient">{title}</span>
+        <span className={textGradientClass}>{title}</span>
       </h2>
       {subtitle && <p className="mx-auto max-w-2xl text-lg text-text-secondary md:text-xl">{subtitle}</p>}
     </motion.div>

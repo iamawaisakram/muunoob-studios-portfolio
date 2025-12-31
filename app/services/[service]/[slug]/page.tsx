@@ -9,6 +9,8 @@ import {
   WhyChooseUs,
   FAQ,
   ServiceCTA,
+  AnalyticsSubServicePage,
+  CreativeSubServicePage,
 } from '@/components/services'
 import { getSubServiceBySlug, generateSubServiceParams, ServiceType, services } from '@/lib/services'
 
@@ -26,7 +28,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const result = getSubServiceBySlug(slug)
-  
+
   if (!result) {
     return {
       title: 'Service Not Found | MUUNOOB STUDIOS',
@@ -56,10 +58,35 @@ export default async function SubServicePage({ params }: PageProps) {
   // Get parent service name for breadcrumbs
   const parentServiceName = parentService.name
 
+  // Determine which page layout to use based on service type
+  const serviceType = parentService.slug as ServiceType
+
+  // Render different page layouts based on service type
+  if (serviceType === 'business-analytics') {
+    return (
+      <main className="relative min-h-screen overflow-hidden">
+        <Navbar />
+        <AnalyticsSubServicePage service={service} parentService={parentService} />
+        <Footer />
+      </main>
+    )
+  }
+
+  if (serviceType === 'creative') {
+    return (
+      <main className="relative min-h-screen overflow-hidden">
+        <Navbar />
+        <CreativeSubServicePage service={service} parentService={parentService} />
+        <Footer />
+      </main>
+    )
+  }
+
+  // Default layout for Development services (and any future services)
   return (
     <main className="relative min-h-screen overflow-hidden bg-light">
       <Navbar />
-      
+
       <ServiceHero
         title={service.name}
         tagline={service.shortDescription}
@@ -100,4 +127,3 @@ export default async function SubServicePage({ params }: PageProps) {
     </main>
   )
 }
-

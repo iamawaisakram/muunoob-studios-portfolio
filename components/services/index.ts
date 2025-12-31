@@ -6,4 +6,6 @@ export { default as WhyChooseUs } from './WhyChooseUs'
 export { default as FAQ } from './FAQ'
 export { default as ServiceCTA } from './ServiceCTA'
 export { default as SubServiceGrid } from './SubServiceGrid'
+export { default as AnalyticsSubServicePage } from './AnalyticsSubServicePage'
+export { default as CreativeSubServicePage } from './CreativeSubServicePage'
 

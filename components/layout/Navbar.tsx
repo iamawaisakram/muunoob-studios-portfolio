@@ -252,6 +252,16 @@ export default function Navbar() {
                       />
                       <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full" />
                     </Link>
+                  ) : link.href.startsWith('/') ? (
+                    <Link
+                      href={link.href}
+                      className="group relative flex items-center gap-1 text-sm text-text-secondary transition-colors duration-300 hover:text-primary"
+                    >
+                      <motion.span whileHover={{ y: -2 }}>
+                        {link.name}
+                      </motion.span>
+                      <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full" />
+                    </Link>
                   ) : (
                     <motion.a
                       href={link.href}
@@ -355,6 +365,14 @@ export default function Navbar() {
                             onClose={() => setIsMobileMenuOpen(false)}
                           />
                         </>
+                      ) : link.href.startsWith('/') ? (
+                        <Link
+                          href={link.href}
+                          className="block py-3 font-display text-xl text-text-primary transition-colors hover:text-primary"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {link.name}
+                        </Link>
                       ) : (
                         <a
                           href={link.href}
