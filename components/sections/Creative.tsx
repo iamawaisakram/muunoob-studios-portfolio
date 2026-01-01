@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, PenTool, Video } from 'lucide-react'
+import { ArrowRight, PenTool, Video, Palette } from 'lucide-react'
 import Link from 'next/link'
 import SectionWrapper, { SectionHeader } from '@/components/ui/SectionWrapper'
 import { CREATIVE_SERVICES } from '@/lib/constants'
