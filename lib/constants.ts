@@ -88,6 +88,87 @@ export const BUSINESS_ANALYTICS = {
   ],
 }
 
+// Creative Portfolio Projects (from Behance)
+// Supports YouTube videos and images
+export interface CreativeProject {
+  id: string
+  title: string
+  category: 'branding' | 'video' | 'motion' | 'social' | 'ui-ux' | 'packaging'
+  thumbnail: string
+  media: {
+    type: 'youtube' | 'image'
+    url: string // YouTube video ID for youtube type, or image URL for image type
+  }
+  description: string
+  behanceUrl?: string
+  tags: string[]
+}
+
+export const CREATIVE_PORTFOLIO: CreativeProject[] = [
+  {
+    id: 'video-1',
+    title: 'Creative Showcase 1',
+    category: 'video',
+    thumbnail: '',
+    media: {
+      type: 'youtube',
+      url: 'rk4jTGTOJrk',
+    },
+    description: 'Professional video production showcasing creative excellence.',
+    behanceUrl: 'https://www.behance.net/daniyalabdullrazzaq',
+    tags: ['Video Production', 'Creative'],
+  },
+  {
+    id: 'video-2',
+    title: 'Creative Showcase 2',
+    category: 'video',
+    thumbnail: '',
+    media: {
+      type: 'youtube',
+      url: 'RdTJXi0k_c4',
+    },
+    description: 'Engaging video content crafted with attention to detail.',
+    behanceUrl: 'https://www.behance.net/daniyalabdullrazzaq',
+    tags: ['Video Editing', 'Content'],
+  },
+  {
+    id: 'video-3',
+    title: 'Creative Showcase 3',
+    category: 'video',
+    thumbnail: '',
+    media: {
+      type: 'youtube',
+      url: 'vyHh2cvIkMo',
+    },
+    description: 'Dynamic visual storytelling through professional editing.',
+    behanceUrl: 'https://www.behance.net/daniyalabdullrazzaq',
+    tags: ['Video Production', 'Storytelling'],
+  },
+  {
+    id: 'video-4',
+    title: 'Creative Showcase 4',
+    category: 'video',
+    thumbnail: '',
+    media: {
+      type: 'youtube',
+      url: 'rcZULDeenyk',
+    },
+    description: 'High-quality video production with creative direction.',
+    behanceUrl: 'https://www.behance.net/daniyalabdullrazzaq',
+    tags: ['Video', 'Creative Direction'],
+  },
+]
+
+export const CREATIVE_CATEGORIES = [
+  { id: 'all', label: 'All Work' },
+  { id: 'branding', label: 'Branding' },
+  { id: 'video', label: 'Video' },
+  { id: 'motion', label: 'Motion' },
+  { id: 'social', label: 'Social Media' },
+  { id: 'ui-ux', label: 'UI/UX' },
+  { id: 'packaging', label: 'Packaging' },
+]
+
 // Creative Services Dropdown
 export const CREATIVE_SERVICES = {
   'Branding & Graphic Design': [

@@ -6,11 +6,14 @@ export interface CaseStudyImage {
   caption?: string
 }
 
+export type ServiceCategory = 'development' | 'business-analytics' | 'creative'
+
 export interface CaseStudy {
   id: number
   slug: string
   title: string
   category: string
+  serviceCategory: ServiceCategory // Main tab category
   description: string
   image: string
   technologies: string[]
@@ -35,6 +38,7 @@ export const DETAILED_CASE_STUDIES: CaseStudy[] = [
     slug: 'aithentic',
     title: 'Aithentic',
     category: 'Enterprise Software',
+    serviceCategory: 'development',
     description: 'A comprehensive asset intelligence platform for IT asset lifecycle management, compliance visibility, cost optimization, and cloud infrastructure security.',
     image: '/projects/aithentic-hero.webp',
     technologies: ['React', 'Node.js', 'Azure', 'PostgreSQL', 'TypeScript'],
@@ -98,6 +102,7 @@ export const DETAILED_CASE_STUDIES: CaseStudy[] = [
     slug: 'fast-read',
     title: 'Fast Read',
     category: 'AI & Automation',
+    serviceCategory: 'development',
     description: 'AI-powered book writing platform that transforms ideas into full books with automated content generation, image creation, and multi-format publishing.',
     image: '/projects/fast-read.webp',
     technologies: ['Next.js', 'AI/ML', 'Node.js', 'PostgreSQL'],
@@ -164,6 +169,7 @@ export const DETAILED_CASE_STUDIES: CaseStudy[] = [
     slug: 'vfairs',
     title: 'vFairs',
     category: 'Event Technology',
+    serviceCategory: 'development',
     description: 'An all-in-one event management platform for hosting stress-free hybrid, in-person, and virtual events with comprehensive tools for registration, engagement, and analytics.',
     image: '/projects/vfairs-hero.webp',
     technologies: ['React', 'Node.js', 'AWS', 'PostgreSQL', 'WebRTC'],
@@ -222,6 +228,7 @@ export const DETAILED_CASE_STUDIES: CaseStudy[] = [
     slug: 'earlier-than-this',
     title: 'Earlier Than This',
     category: 'Education',
+    serviceCategory: 'development',
     description: 'An interactive historical exploration platform featuring country timelines, historical essays, and community contributions to discover world history.',
     image: '/projects/earlier-than-this.webp',
     technologies: ['Next.js', 'TypeScript', 'Mantine UI', 'PostgreSQL'],
@@ -277,6 +284,7 @@ export const DETAILED_CASE_STUDIES: CaseStudy[] = [
     slug: 'gulistan-e-kutub',
     title: 'Gulistan-e-Kutub',
     category: 'E-Commerce',
+    serviceCategory: 'development',
     description: 'A comprehensive online bookstore platform offering a curated collection of books across multiple genres with seamless browsing, categorization, and shopping cart functionality.',
     image: '/projects/gulistan-e-kutub.webp',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL'],
@@ -350,12 +358,52 @@ export function generateCaseStudyParams() {
   }))
 }
 
+// Service category tabs for filtering
+export const SERVICE_CATEGORY_TABS = [
+  { id: 'development', label: 'Development' },
+  { id: 'business-analytics', label: 'Business Analytics' },
+  { id: 'creative', label: 'Creative' },
+] as const
+
 // For backwards compatibility with existing CASE_STUDIES usage
 export function getCaseStudiesForListing() {
   return DETAILED_CASE_STUDIES.map((study) => ({
     id: study.id,
     title: study.title,
     category: study.category,
+    serviceCategory: study.serviceCategory,
+    description: study.description,
+    image: study.image,
+    technologies: study.technologies,
+    link: `/case-studies/${study.slug}`,
+  }))
+}
+
+// Get case studies filtered by service category
+export function getCaseStudiesByServiceCategory(serviceCategory: ServiceCategory) {
+  return DETAILED_CASE_STUDIES.filter((study) => study.serviceCategory === serviceCategory).map((study) => ({
+    id: study.id,
+    title: study.title,
+    category: study.category,
+    serviceCategory: study.serviceCategory,
+    description: study.description,
+    image: study.image,
+    technologies: study.technologies,
+    link: `/case-studies/${study.slug}`,
+  }))
+}
+
+// Get limited case studies for section display (6 items max)
+export function getCaseStudiesForSection(serviceCategory?: ServiceCategory, limit = 6) {
+  const studies = serviceCategory
+    ? DETAILED_CASE_STUDIES.filter((study) => study.serviceCategory === serviceCategory)
+    : DETAILED_CASE_STUDIES
+
+  return studies.slice(0, limit).map((study) => ({
+    id: study.id,
+    title: study.title,
+    category: study.category,
+    serviceCategory: study.serviceCategory,
     description: study.description,
     image: study.image,
     technologies: study.technologies,

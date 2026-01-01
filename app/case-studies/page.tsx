@@ -1,22 +1,41 @@
 'use client'
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowRight, Filter } from 'lucide-react'
+import { useState, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Navbar, Footer } from '@/components/layout'
 import CaseStudyCard from '@/components/ui/CaseStudyCard'
-import { getCaseStudiesForListing } from '@/lib/case-studies'
+import CreativePortfolio from '@/components/sections/CreativePortfolio'
+import {
+  getCaseStudiesForListing,
+  SERVICE_CATEGORY_TABS,
+  ServiceCategory,
+} from '@/lib/case-studies'
 import { cn } from '@/lib/utils'
 
-const caseStudies = getCaseStudiesForListing()
-const categories = ['All', ...Array.from(new Set(caseStudies.map(study => study.category)))]
+const ITEMS_PER_PAGE = 10
+const allCaseStudies = getCaseStudiesForListing()
 
 export default function CaseStudiesPage() {
-  const [activeCategory, setActiveCategory] = useState('All')
+  const [activeTab, setActiveTab] = useState<ServiceCategory | 'all'>('all')
+  const [currentPage, setCurrentPage] = useState(1)
 
-  const filteredStudies = activeCategory === 'All'
-    ? caseStudies
-    : caseStudies.filter(study => study.category === activeCategory)
+  const filteredStudies = useMemo(() => {
+    if (activeTab === 'creative') return [] // Creative uses CreativePortfolio
+    if (activeTab === 'all') return allCaseStudies
+    return allCaseStudies.filter((study) => study.serviceCategory === activeTab)
+  }, [activeTab])
+
+  const totalPages = Math.ceil(filteredStudies.length / ITEMS_PER_PAGE)
+  const paginatedStudies = filteredStudies.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  )
+
+  const handleTabChange = (tab: ServiceCategory | 'all') => {
+    setActiveTab(tab)
+    setCurrentPage(1)
+  }
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-light">
@@ -58,32 +77,39 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
-      {/* Filter Section */}
+      {/* Service Category Tabs */}
       <section className="py-6 sticky top-16 z-30 bg-gradient-to-r from-light via-white to-light border-b border-light-300 shadow-soft-sm backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-4">
-          <div className="flex items-center justify-center gap-6 flex-wrap">
-            <div className="flex items-center gap-2 text-text-secondary bg-light-200 px-4 py-2 rounded-full">
-              <Filter size={16} className="text-primary" />
-              <span className="text-sm font-medium">Filter</span>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {categories.map((category) => (
-                <motion.button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={cn(
-                    "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border",
-                    activeCategory === category
-                      ? "bg-gradient-to-r from-primary to-secondary text-white shadow-green border-transparent"
-                      : "bg-white text-text-secondary border-light-300 hover:border-primary hover:text-primary hover:shadow-soft-sm"
-                  )}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {category}
-                </motion.button>
-              ))}
-            </div>
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <motion.button
+              onClick={() => handleTabChange('all')}
+              className={cn(
+                'px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border',
+                activeTab === 'all'
+                  ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-green border-transparent'
+                  : 'bg-white text-text-secondary border-light-300 hover:border-primary hover:text-primary hover:shadow-soft-sm'
+              )}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              All Projects
+            </motion.button>
+            {SERVICE_CATEGORY_TABS.map((tab) => (
+              <motion.button
+                key={tab.id}
+                onClick={() => handleTabChange(tab.id)}
+                className={cn(
+                  'px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border',
+                  activeTab === tab.id
+                    ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-green border-transparent'
+                    : 'bg-white text-text-secondary border-light-300 hover:border-primary hover:text-primary hover:shadow-soft-sm'
+                )}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {tab.label}
+              </motion.button>
+            ))}
           </div>
         </div>
       </section>
@@ -91,24 +117,103 @@ export default function CaseStudiesPage() {
       {/* Case Studies Grid */}
       <section className="py-20 bg-light-200">
         <div className="mx-auto max-w-7xl px-4">
-          <motion.div
-            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {filteredStudies.map((study, index) => (
-              <CaseStudyCard
-                key={study.id}
-                {...study}
-                index={index}
-              />
-            ))}
-          </motion.div>
+          {/* Show CreativePortfolio for Creative tab */}
+          {activeTab === 'creative' ? (
+            <CreativePortfolio showHeader={false} />
+          ) : (
+            <>
+              <motion.div
+                className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+                layout
+              >
+                <AnimatePresence mode="popLayout">
+                  {paginatedStudies.map((study, index) => (
+                    <motion.div
+                      key={study.id}
+                      layout
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                    >
+                      <CaseStudyCard {...study} index={index} />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </motion.div>
 
-          {filteredStudies.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-text-secondary">No case studies found for this category.</p>
+              {paginatedStudies.length === 0 && (
+                <div className="text-center py-16">
+                  <p className="text-text-secondary">
+                    No case studies found in this category yet.
+                  </p>
+                </div>
+              )}
+            </>
+          )}
+
+          {/* Pagination - hide for Creative tab */}
+          {activeTab !== 'creative' && totalPages > 1 && (
+            <div className="mt-12 flex items-center justify-center gap-2">
+              <motion.button
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className={cn(
+                  'flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-all',
+                  currentPage === 1
+                    ? 'bg-light-300 text-text-secondary/50 cursor-not-allowed'
+                    : 'bg-white text-text-secondary hover:bg-primary hover:text-white shadow-soft-sm'
+                )}
+                whileHover={currentPage === 1 ? {} : { scale: 1.05 }}
+                whileTap={currentPage === 1 ? {} : { scale: 0.95 }}
+              >
+                <ChevronLeft size={16} />
+                Previous
+              </motion.button>
+
+              <div className="flex items-center gap-1 px-4">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => (
+                    <motion.button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      className={cn(
+                        'h-10 w-10 rounded-full text-sm font-medium transition-all',
+                        currentPage === page
+                          ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-green'
+                          : 'bg-white text-text-secondary hover:bg-primary/10 hover:text-primary'
+                      )}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      {page}
+                    </motion.button>
+                  )
+                )}
+              </div>
+
+              <motion.button
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                className={cn(
+                  'flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-all',
+                  currentPage === totalPages
+                    ? 'bg-light-300 text-text-secondary/50 cursor-not-allowed'
+                    : 'bg-white text-text-secondary hover:bg-primary hover:text-white shadow-soft-sm'
+                )}
+                whileHover={currentPage === totalPages ? {} : { scale: 1.05 }}
+                whileTap={currentPage === totalPages ? {} : { scale: 0.95 }}
+              >
+                Next
+                <ChevronRight size={16} />
+              </motion.button>
+            </div>
+          )}
+
+          {/* Results count - hide for Creative tab */}
+          {activeTab !== 'creative' && (
+            <div className="mt-6 text-center text-sm text-text-secondary">
+              Showing {paginatedStudies.length} of {filteredStudies.length} projects
             </div>
           )}
         </div>

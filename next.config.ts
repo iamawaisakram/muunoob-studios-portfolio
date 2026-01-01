@@ -43,6 +43,7 @@ const securityHeaders = [
       img-src 'self' blob: data: https:;
       font-src 'self' data:;
       connect-src 'self' https:;
+      frame-src 'self' https://www.youtube.com https://youtube.com;
       frame-ancestors 'self';
       base-uri 'self';
       form-action 'self';
@@ -58,6 +59,14 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ytimg.com',
       },
     ],
     formats: ['image/avif', 'image/webp'],

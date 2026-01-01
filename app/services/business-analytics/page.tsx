@@ -22,6 +22,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { Navbar, Footer } from '@/components/layout'
+import PortfolioSection from '@/components/sections/PortfolioSection'
 import { businessAnalyticsService } from '@/lib/services'
 import { cn } from '@/lib/utils'
 
@@ -481,6 +482,15 @@ export default function BusinessAnalyticsServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* Portfolio Section */}
+      <PortfolioSection
+        serviceCategory="business-analytics"
+        title="Business Analytics Portfolio"
+        subtitle="Explore our successful business analytics and automation projects that transformed operations"
+        theme="analytics"
+        limit={6}
+      />
 
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-br from-analytics via-analytics-600 to-analytics-secondary relative overflow-hidden">

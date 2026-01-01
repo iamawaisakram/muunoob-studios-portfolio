@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import {
   ArrowRight,
   Palette,
@@ -10,20 +10,18 @@ import {
   PenTool,
   Sparkles,
   Play,
-  Pause,
   Award,
   Star,
   Heart,
-  Eye,
   MousePointer2,
   Layers,
   Wand2,
 } from 'lucide-react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Navbar, Footer } from '@/components/layout'
 import { creativeService } from '@/lib/services'
 import { cn } from '@/lib/utils'
+import CreativePortfolio from '@/components/sections/CreativePortfolio'
 
 // Portfolio item type
 interface PortfolioItem {
@@ -97,76 +95,6 @@ function KineticText({ text, className }: { text: string; className?: string }) 
         </motion.span>
       ))}
     </span>
-  )
-}
-
-// Interactive portfolio card
-function PortfolioCard({ item, index }: { item: PortfolioItem; index: number }) {
-  const [isHovered, setIsHovered] = useState(false)
-
-  return (
-    <motion.div
-      className="relative group cursor-pointer"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <motion.div
-        className={cn(
-          "relative h-72 rounded-3xl overflow-hidden",
-          "bg-gradient-to-br",
-          item.color
-        )}
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.3 }}
-      >
-        {/* Pattern overlay */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '24px 24px'
-          }} />
-        </div>
-
-        {/* Content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6">
-          <motion.div
-            animate={{ scale: isHovered ? 1.2 : 1, rotate: isHovered ? 10 : 0 }}
-            transition={{ duration: 0.3 }}
-            className="mb-4 p-4 rounded-2xl bg-white/20 backdrop-blur-sm"
-          >
-            {item.icon}
-          </motion.div>
-          <h3 className="font-display text-xl font-bold mb-2">{item.title}</h3>
-          <span className="px-3 py-1 rounded-full bg-white/20 text-sm">{item.category}</span>
-        </div>
-
-        {/* Hover overlay */}
-        <AnimatePresence>
-          {isHovered && (
-            <motion.div
-              className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <motion.div
-                className="flex items-center gap-2 px-6 py-3 rounded-full bg-white text-creative font-medium"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-              >
-                <Eye size={18} />
-                View Work
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </motion.div>
   )
 }
 
@@ -428,11 +356,7 @@ export default function CreativeServicesPage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {portfolioItems.map((item, index) => (
-              <PortfolioCard key={item.id} item={item} index={index} />
-            ))}
-          </div>
+          <CreativePortfolio showHeader={false} />
 
           <motion.div
             className="text-center mt-12"

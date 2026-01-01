@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { Navbar, Footer } from '@/components/layout'
 import { ServiceHero, SubServiceGrid, ServiceCTA } from '@/components/services'
+import PortfolioSection from '@/components/sections/PortfolioSection'
 import { developmentService } from '@/lib/services'
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default function DevelopmentServicesPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-light">
       <Navbar />
-      
+
       <ServiceHero
         title={developmentService.name}
         tagline={developmentService.tagline}
@@ -35,6 +36,14 @@ export default function DevelopmentServicesPage() {
         subtitle="Comprehensive development services to bring your digital vision to life"
         serviceSlug="development"
         subCategories={developmentService.subCategories}
+      />
+
+      <PortfolioSection
+        serviceCategory="development"
+        title="Development Portfolio"
+        subtitle="Explore our successful development projects showcasing web apps, mobile apps, and custom software solutions"
+        theme="primary"
+        limit={6}
       />
 
       <ServiceCTA
