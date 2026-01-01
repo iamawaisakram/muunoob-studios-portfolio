@@ -6,7 +6,7 @@ import { ArrowRight, ChevronDown } from 'lucide-react'
 import { HERO_CONTENT } from '@/lib/constants'
 import Button from '@/components/ui/Button'
 
-const Scene = dynamic(() => import('@/components/three/Scene'), { ssr: false })
+const CanvasBackground = dynamic(() => import('@/components/ui/CanvasBackground'), { ssr: false })
 
 export default function Hero() {
   return (
@@ -14,8 +14,8 @@ export default function Hero() {
       id="home"
       className="relative flex min-h-screen items-center justify-center overflow-hidden bg-light"
     >
-      {/* 3D Background */}
-      <Scene variant="combined" className="absolute inset-0" />
+      {/* Canvas Background Animation */}
+      <CanvasBackground variant="combined" className="absolute inset-0" />
 
       {/* Soft gradient overlays for light theme */}
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-light/30 via-transparent to-light/60" />

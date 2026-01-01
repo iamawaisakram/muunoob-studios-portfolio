@@ -1,9 +1,7 @@
-'use client'
-
-import { useParams, notFound } from 'next/navigation'
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import {
   ArrowLeft,
   ArrowRight,
@@ -15,11 +13,44 @@ import {
   Quote,
 } from 'lucide-react'
 import { Navbar, Footer } from '@/components/layout'
-import { getCaseStudyBySlug, DETAILED_CASE_STUDIES } from '@/lib/case-studies'
+import { getCaseStudyBySlug, DETAILED_CASE_STUDIES, generateCaseStudyParams } from '@/lib/case-studies'
+import { AnimatedSection, AnimatedDiv, AnimatedButton } from '@/components/ui/AnimatedElements'
 
-export default function CaseStudyDetailPage() {
-  const params = useParams()
-  const slug = params.slug as string
+interface PageProps {
+  params: Promise<{
+    slug: string
+  }>
+}
+
+// Generate static params for all case studies
+export async function generateStaticParams() {
+  return generateCaseStudyParams()
+}
+
+// Generate metadata for each case study
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  const caseStudy = getCaseStudyBySlug(slug)
+
+  if (!caseStudy) {
+    return {
+      title: 'Case Study Not Found | MUUNOOB STUDIOS',
+    }
+  }
+
+  return {
+    title: `${caseStudy.title} | Case Study | MUUNOOB STUDIOS`,
+    description: caseStudy.description,
+    openGraph: {
+      title: `${caseStudy.title} | MUUNOOB STUDIOS`,
+      description: caseStudy.description,
+      images: [caseStudy.image],
+    },
+  }
+}
+
+export default async function CaseStudyDetailPage({ params }: PageProps) {
+  const { slug } = await params
   const caseStudy = getCaseStudyBySlug(slug)
 
   if (!caseStudy) {
@@ -44,7 +75,7 @@ export default function CaseStudyDetailPage() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-4">
           {/* Breadcrumbs */}
-          <motion.div
+          <AnimatedDiv
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
@@ -56,10 +87,10 @@ export default function CaseStudyDetailPage() {
               <ArrowLeft size={16} />
               Back to Case Studies
             </Link>
-          </motion.div>
+          </AnimatedDiv>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
+            <AnimatedDiv
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
@@ -111,22 +142,20 @@ export default function CaseStudyDetailPage() {
               </div>
 
               {caseStudy.liveUrl && (
-                <motion.a
+                <AnimatedButton
                   href={caseStudy.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-white shadow-green hover:shadow-green-lg transition-all"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   View Live Project
                   <ExternalLink size={18} />
-                </motion.a>
+                </AnimatedButton>
               )}
-            </motion.div>
+            </AnimatedDiv>
 
             {/* Hero Image */}
-            <motion.div
+            <AnimatedDiv
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -139,9 +168,10 @@ export default function CaseStudyDetailPage() {
                   width={800}
                   height={500}
                   className="w-full h-auto object-cover"
+                  priority
                 />
               </div>
-            </motion.div>
+            </AnimatedDiv>
           </div>
         </div>
       </section>
@@ -150,16 +180,12 @@ export default function CaseStudyDetailPage() {
       {caseStudy.overview && (
         <section className="py-20 bg-white">
           <div className="mx-auto max-w-4xl px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
+            <AnimatedSection>
               <h2 className="font-display text-3xl font-bold text-text-primary mb-6">
                 Project Overview
               </h2>
               <p className="text-lg text-text-secondary leading-relaxed">{caseStudy.overview}</p>
-            </motion.div>
+            </AnimatedSection>
           </div>
         </section>
       )}
@@ -168,28 +194,20 @@ export default function CaseStudyDetailPage() {
       {caseStudy.gallery && caseStudy.gallery.length > 0 && (
         <section className="py-20 bg-light-200">
           <div className="mx-auto max-w-7xl px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
+            <AnimatedSection className="text-center mb-12">
               <h2 className="font-display text-3xl font-bold text-text-primary mb-4">
                 Project Gallery
               </h2>
               <p className="text-text-secondary max-w-2xl mx-auto">
                 Screenshots and visuals from the project
               </p>
-            </motion.div>
+            </AnimatedSection>
 
             <div className="grid md:grid-cols-2 gap-8">
               {caseStudy.gallery.map((image, index) => (
-                <motion.div
+                <AnimatedSection
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  delay={index * 0.1}
                   className="group"
                 >
                   <div className="relative rounded-2xl overflow-hidden shadow-soft border border-light-300 bg-white">
@@ -199,12 +217,13 @@ export default function CaseStudyDetailPage() {
                       width={800}
                       height={500}
                       className="w-full h-auto object-cover"
+                      loading="lazy"
                     />
                   </div>
                   {image.caption && (
                     <p className="mt-3 text-sm text-text-secondary text-center">{image.caption}</p>
                   )}
-                </motion.div>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -217,7 +236,7 @@ export default function CaseStudyDetailPage() {
           <div className="mx-auto max-w-7xl px-4">
             <div className="grid md:grid-cols-2 gap-12">
               {caseStudy.challenge && (
-                <motion.div
+                <AnimatedDiv
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -230,11 +249,11 @@ export default function CaseStudyDetailPage() {
                     The Challenge
                   </h3>
                   <p className="text-text-secondary leading-relaxed">{caseStudy.challenge}</p>
-                </motion.div>
+                </AnimatedDiv>
               )}
 
               {caseStudy.solution && (
-                <motion.div
+                <AnimatedDiv
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -247,7 +266,7 @@ export default function CaseStudyDetailPage() {
                     Our Solution
                   </h3>
                   <p className="text-text-secondary leading-relaxed">{caseStudy.solution}</p>
-                </motion.div>
+                </AnimatedDiv>
               )}
             </div>
           </div>
@@ -258,33 +277,25 @@ export default function CaseStudyDetailPage() {
       {caseStudy.features && caseStudy.features.length > 0 && (
         <section className="py-20 bg-light-200">
           <div className="mx-auto max-w-7xl px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
+            <AnimatedSection className="text-center mb-12">
               <h2 className="font-display text-3xl font-bold text-text-primary mb-4">
                 Key Features
               </h2>
               <p className="text-text-secondary max-w-2xl mx-auto">
                 The comprehensive set of features we implemented to deliver exceptional value
               </p>
-            </motion.div>
+            </AnimatedSection>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {caseStudy.features.map((feature, index) => (
-                <motion.div
+                <AnimatedSection
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  delay={index * 0.1}
                   className="flex items-start gap-3 p-4 rounded-xl bg-light-200 border border-light-300"
                 >
                   <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                   <span className="text-text-secondary">{feature}</span>
-                </motion.div>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -295,33 +306,25 @@ export default function CaseStudyDetailPage() {
       {caseStudy.results && caseStudy.results.length > 0 && (
         <section className="py-20 bg-gradient-to-br from-primary via-primary-600 to-secondary">
           <div className="mx-auto max-w-7xl px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
+            <AnimatedSection className="text-center mb-12">
               <h2 className="font-display text-3xl font-bold text-white mb-4">Results & Impact</h2>
               <p className="text-white/80 max-w-2xl mx-auto">
                 The measurable outcomes we achieved together
               </p>
-            </motion.div>
+            </AnimatedSection>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {caseStudy.results.map((result, index) => (
-                <motion.div
+                <AnimatedSection
                   key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  delay={index * 0.1}
                   className="text-center p-6 rounded-2xl bg-white/10 backdrop-blur-sm"
                 >
                   <div className="font-display text-3xl md:text-4xl font-bold text-white mb-2">
                     {result.value}
                   </div>
                   <div className="text-white/80 text-sm">{result.metric}</div>
-                </motion.div>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -332,12 +335,7 @@ export default function CaseStudyDetailPage() {
       {caseStudy.testimonial && (
         <section className="py-20 bg-white">
           <div className="mx-auto max-w-4xl px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="relative bg-light-200 rounded-2xl p-8 md:p-12 border border-light-300"
-            >
+            <AnimatedSection className="relative bg-light-200 rounded-2xl p-8 md:p-12 border border-light-300">
               <Quote className="absolute top-6 left-6 w-12 h-12 text-primary/20" />
               <div className="relative z-10">
                 <p className="text-xl md:text-2xl text-text-primary leading-relaxed mb-6 italic">
@@ -350,7 +348,7 @@ export default function CaseStudyDetailPage() {
                   <div className="text-text-secondary">{caseStudy.testimonial.role}</div>
                 </div>
               </div>
-            </motion.div>
+            </AnimatedSection>
           </div>
         </section>
       )}
@@ -398,27 +396,21 @@ export default function CaseStudyDetailPage() {
       {/* CTA Section */}
       <section className="py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+          <AnimatedSection>
             <h2 className="font-display text-3xl font-bold text-text-primary md:text-4xl mb-4">
               Ready to Build Something Amazing?
             </h2>
             <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
               Let&apos;s discuss your project and see how we can help bring your vision to life.
             </p>
-            <motion.a
+            <AnimatedButton
               href="#contact"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 font-medium text-white shadow-green hover:shadow-green-lg transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               Start Your Project
               <ArrowRight size={18} />
-            </motion.a>
-          </motion.div>
+            </AnimatedButton>
+          </AnimatedSection>
         </div>
       </section>
 

@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, memo } from 'react'
 
-interface SceneProps {
+interface CanvasBackgroundProps {
   variant?: 'particles' | 'blobs' | 'combined'
   className?: string
 }
 
-function Scene({ variant = 'combined', className }: SceneProps) {
+function CanvasBackground({ variant = 'combined', className }: CanvasBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const frameIdRef = useRef<number>(0)
 
@@ -138,4 +138,4 @@ function Scene({ variant = 'combined', className }: SceneProps) {
   )
 }
 
-export default memo(Scene)
+export default memo(CanvasBackground)
