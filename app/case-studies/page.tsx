@@ -1,11 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Filter } from 'lucide-react'
 import { Navbar, Footer } from '@/components/layout'
+import CaseStudyCard from '@/components/ui/CaseStudyCard'
 import { getCaseStudiesForListing } from '@/lib/case-studies'
 import { cn } from '@/lib/utils'
 
@@ -60,27 +59,29 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Filter Section */}
-      <section className="py-8 border-b border-light-300 bg-white sticky top-16 z-30">
+      <section className="py-6 sticky top-16 z-30 bg-gradient-to-r from-light via-white to-light border-b border-light-300 shadow-soft-sm backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-4">
-          <div className="flex items-center gap-4 flex-wrap">
-            <span className="flex items-center gap-2 text-text-secondary">
-              <Filter size={18} />
-              Filter by:
-            </span>
-            <div className="flex flex-wrap gap-2">
+          <div className="flex items-center justify-center gap-6 flex-wrap">
+            <div className="flex items-center gap-2 text-text-secondary bg-light-200 px-4 py-2 rounded-full">
+              <Filter size={16} className="text-primary" />
+              <span className="text-sm font-medium">Filter</span>
+            </div>
+            <div className="flex flex-wrap gap-3">
               {categories.map((category) => (
-                <button
+                <motion.button
                   key={category}
                   onClick={() => setActiveCategory(category)}
                   className={cn(
-                    "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
+                    "px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border",
                     activeCategory === category
-                      ? "bg-primary text-white shadow-green"
-                      : "bg-light-200 text-text-secondary hover:bg-primary/10 hover:text-primary"
+                      ? "bg-gradient-to-r from-primary to-secondary text-white shadow-green border-transparent"
+                      : "bg-white text-text-secondary border-light-300 hover:border-primary hover:text-primary hover:shadow-soft-sm"
                   )}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {category}
-                </button>
+                </motion.button>
               ))}
             </div>
           </div>
@@ -97,72 +98,11 @@ export default function CaseStudiesPage() {
             transition={{ duration: 0.5 }}
           >
             {filteredStudies.map((study, index) => (
-              <motion.div
+              <CaseStudyCard
                 key={study.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
-              >
-                <motion.div
-                  className="relative overflow-hidden rounded-2xl bg-white shadow-soft border border-light-300 h-full"
-                  whileHover={{ y: -8 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                >
-                  {/* Image */}
-                  <div className="relative h-48 bg-gradient-to-br from-primary/20 to-secondary/20 overflow-hidden">
-                    <Image
-                      src={study.image}
-                      alt={study.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <ArrowRight className="w-8 h-8 text-white" />
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-3">
-                      {study.category}
-                    </span>
-
-                    <h3 className="font-display text-xl font-semibold text-text-primary mb-2 group-hover:text-primary transition-colors">
-                      {study.title}
-                    </h3>
-
-                    <p className="text-text-secondary text-sm mb-4 line-clamp-2">
-                      {study.description}
-                    </p>
-
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {study.technologies.slice(0, 3).map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-1 rounded-md bg-light-200 text-text-muted text-xs"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {study.technologies.length > 3 && (
-                        <span className="px-2 py-1 rounded-md bg-light-200 text-text-muted text-xs">
-                          +{study.technologies.length - 3}
-                        </span>
-                      )}
-                    </div>
-
-                    <Link
-                      href={study.link}
-                      className="inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-3 transition-all"
-                    >
-                      View Case Study <ArrowRight size={16} />
-                    </Link>
-                  </div>
-                </motion.div>
-              </motion.div>
+                {...study}
+                index={index}
+              />
             ))}
           </motion.div>
 
