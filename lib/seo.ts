@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { COMPANY_NAME, COMPANY_TAGLINE, COMPANY_DESCRIPTION } from './constants'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yourcompany.com'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.muunoobstudios.com'
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -53,7 +53,7 @@ export const defaultMetadata: Metadata = {
     title: `${COMPANY_NAME} | ${COMPANY_TAGLINE}`,
     description: COMPANY_DESCRIPTION,
     images: ['/og-image.png'],
-    creator: '@yourcompany',
+    creator: '@muunoobstudios',
   },
   robots: {
     index: true,
@@ -80,11 +80,10 @@ export const jsonLd = {
   name: COMPANY_NAME,
   description: COMPANY_DESCRIPTION,
   url: siteUrl,
-  logo: `${siteUrl}/logo.png`,
+  logo: `${siteUrl}/muunoob-logo.png`,
   sameAs: [
-    'https://twitter.com/yourcompany',
-    'https://linkedin.com/company/yourcompany',
-    'https://github.com/yourcompany',
+    'https://www.linkedin.com/company/muunoob-studios',
+    'https://www.facebook.com/muunoobstudios',
   ],
   contactPoint: {
     '@type': 'ContactPoint',
