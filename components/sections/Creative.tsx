@@ -86,30 +86,6 @@ export default function Creative() {
         })}
       </div>
 
-      {/* Portfolio Showcase - Creative theme */}
-      <motion.div
-        className="mt-16"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-      >
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {[1, 2, 3, 4].map((item) => (
-            <div
-              key={item}
-              className="group relative aspect-square overflow-hidden rounded-xl bg-gradient-to-br from-creative/20 to-creative-mint/30"
-            >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-display text-2xl font-bold text-white/60">
-                  Creative #{item}
-                </span>
-              </div>
-              <div className="absolute inset-0 bg-creative/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
       {/* Bottom CTA */}
       <motion.div
         className="mt-12 text-center"
