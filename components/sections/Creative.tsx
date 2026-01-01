@@ -1,16 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Palette, PenTool, Video, Megaphone } from 'lucide-react'
+import { ArrowRight, PenTool, Video } from 'lucide-react'
 import Link from 'next/link'
 import SectionWrapper, { SectionHeader } from '@/components/ui/SectionWrapper'
 import { CREATIVE_SERVICES } from '@/lib/constants'
 
-const categoryIcons: Record<string, typeof Palette> = {
-  'Branding & Visual Identity': Palette,
-  'Graphic Design': PenTool,
+const categoryIcons: Record<string, typeof PenTool> = {
+  'Branding & Graphic Design': PenTool,
   'Video & Content Production': Video,
-  'Content & Creative Strategy': Megaphone,
 }
 
 export default function Creative() {

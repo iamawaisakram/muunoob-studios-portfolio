@@ -90,13 +90,9 @@ export const BUSINESS_ANALYTICS = {
 
 // Creative Services Dropdown
 export const CREATIVE_SERVICES = {
-  'Branding & Visual Identity': [
-    'Brand Strategy & Positioning',
+  'Branding & Graphic Design': [
     'Logo Design & Brand Identity',
-    'Marketing Collateral Design',
     'UI/UX Design for Web & Apps',
-  ],
-  'Graphic Design': [
     'Social Media Design',
     'Ad Creatives & Campaign Assets',
     'Pitch Decks & Business Presentations',
@@ -108,12 +104,6 @@ export const CREATIVE_SERVICES = {
     'Social Media Reels & Shorts',
     'Motion Graphics & Animations',
     'YouTube & Content-Driven Video Editing',
-  ],
-  'Content & Creative Strategy': [
-    'Social Media Content Strategy',
-    'Creative Direction & Campaign Planning',
-    'Content Repurposing Systems',
-    'Performance-Driven Creative Optimization',
   ],
 }
 
@@ -488,9 +478,9 @@ export const TESTIMONIALS = [
 ]
 
 export const CONTACT_INFO = {
-  email: 'hello@yourcompany.com',
-  phone: '+1 (555) 123-4567',
-  address: '123 Innovation Street, Tech City, TC 12345',
+  email: 'business@muunoobstudios.com',
+  phone: '+923328390963',
+  // address: '123 Innovation Street, Tech City, TC 12345',
   social: {
     twitter: '#',
     linkedin: '#',

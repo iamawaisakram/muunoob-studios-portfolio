@@ -110,7 +110,7 @@ export default function ServiceCTA({
 
           {/* Email Us */}
           <motion.a
-            href="mailto:hello@yourcompany.com"
+            href="mailto:business@muunoobstudios.com"
             className="group flex flex-col items-center p-8 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300"
             whileHover={{ y: -5, scale: 1.02 }}
           >

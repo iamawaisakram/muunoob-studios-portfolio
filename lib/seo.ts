@@ -88,18 +88,18 @@ export const jsonLd = {
   ],
   contactPoint: {
     '@type': 'ContactPoint',
-    telephone: '+1-555-123-4567',
+    telephone: '+923328390963',
     contactType: 'customer service',
-    email: 'hello@yourcompany.com',
+    email: 'business@muunoobstudios.com',
     availableLanguage: ['English'],
   },
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '123 Innovation Street',
-    addressLocality: 'Tech City',
-    postalCode: '12345',
-    addressCountry: 'US',
-  },
+  // address: {
+  //   '@type': 'PostalAddress',
+  //   streetAddress: '123 Innovation Street',
+  //   addressLocality: 'Tech City',
+  //   postalCode: '12345',
+  //   addressCountry: 'US',
+  // },
   offers: {
     '@type': 'AggregateOffer',
     offerCount: 6,

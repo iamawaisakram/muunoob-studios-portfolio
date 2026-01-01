@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Send, Mail, Phone, MapPin, CheckCircle, Loader2 } from 'lucide-react'
+import { Send, Mail, Phone, CheckCircle, Loader2 } from 'lucide-react'
 import SectionWrapper, { SectionHeader } from '@/components/ui/SectionWrapper'
 import Button from '@/components/ui/Button'
 import { CONTACT_INFO } from '@/lib/constants'
@@ -66,15 +66,30 @@ export default function Contact() {
 
     setIsSubmitting(true)
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    setFormData({ name: '', email: '', subject: '', message: '' })
+      if (!response.ok) {
+        throw new Error('Failed to send message')
+      }
 
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000)
+      setIsSubmitted(true)
+      setFormData({ name: '', email: '', subject: '', message: '' })
+
+      // Reset success message after 5 seconds
+      setTimeout(() => setIsSubmitted(false), 5000)
+    } catch (error) {
+      console.error('Contact form error:', error)
+      // You could add error state handling here
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -98,12 +113,12 @@ export default function Contact() {
       value: CONTACT_INFO.phone,
       href: `tel:${CONTACT_INFO.phone}`,
     },
-    {
-      icon: MapPin,
-      label: 'Address',
-      value: CONTACT_INFO.address,
-      href: '#',
-    },
+    // {
+    //   icon: MapPin,
+    //   label: 'Address',
+    //   value: CONTACT_INFO.address,
+    //   href: '#',
+    // },
   ]
 
   return (

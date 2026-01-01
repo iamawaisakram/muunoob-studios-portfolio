@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Twitter, Instagram, Mail, Phone, MapPin, ArrowUp } from 'lucide-react'
+import { Github, Linkedin, Twitter, Instagram, Mail, Phone, ArrowUp } from 'lucide-react'
 import Image from 'next/image'
 import { COMPANY_NAME, CONTACT_INFO, FOOTER_LINKS } from '@/lib/constants'
 
@@ -145,12 +145,6 @@ export default function Footer() {
                   <Phone size={18} />
                   <span>{CONTACT_INFO.phone}</span>
                 </a>
-              </li>
-              <li>
-                <div className="flex items-start gap-3 text-text-secondary">
-                  <MapPin size={18} className="mt-1 flex-shrink-0" />
-                  <span>{CONTACT_INFO.address}</span>
-                </div>
               </li>
             </ul>
           </motion.div>

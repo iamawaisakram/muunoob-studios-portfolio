@@ -8,48 +8,8 @@ export const creativeService: ServiceCategory = {
   heroImage: '/services/creative-hero.svg',
   subCategories: [
     {
-      name: 'Branding & Visual Identity',
+      name: 'Branding & Graphic Design',
       services: [
-        {
-          slug: 'brand-strategy-positioning',
-          name: 'Brand Strategy & Positioning',
-          shortDescription: 'Define your brand\'s unique place in the market',
-          description: 'We help you discover and articulate what makes your brand unique. From market research to positioning statements, we build the strategic foundation for a powerful brand.',
-          image: 'https://illustrations.popsy.co/amber/target.svg',
-          features: [
-            'Market Research',
-            'Competitive Analysis',
-            'Brand Positioning',
-            'Value Proposition',
-            'Messaging Framework',
-            'Brand Guidelines'
-          ],
-          techStack: [
-            { category: 'Research', technologies: ['Surveys', 'Interviews', 'Analytics'] },
-            { category: 'Documentation', technologies: ['Notion', 'Figma', 'Google Docs'] },
-            { category: 'Presentation', technologies: ['Keynote', 'PowerPoint', 'Canva'] },
-            { category: 'Collaboration', technologies: ['Miro', 'FigJam', 'Whimsical'] }
-          ],
-          workflow: [
-            { step: 1, title: 'Discovery', description: 'Deep dive into your business, market, and competitors.' },
-            { step: 2, title: 'Research', description: 'Customer interviews and market analysis.' },
-            { step: 3, title: 'Strategy', description: 'Develop positioning and messaging.' },
-            { step: 4, title: 'Guidelines', description: 'Create comprehensive brand guidelines.' },
-            { step: 5, title: 'Implementation', description: 'Support rollout across touchpoints.' }
-          ],
-          whyChooseUs: [
-            { title: 'Strategic Thinking', description: 'Brand strategy rooted in business goals.', icon: '🎯' },
-            { title: 'Research-Backed', description: 'Insights from real customer data.', icon: '📊' },
-            { title: 'Actionable Output', description: 'Clear guidelines you can implement.', icon: '📋' },
-            { title: 'Long-term Focus', description: 'Build brands that stand the test of time.', icon: '🏆' }
-          ],
-          faqs: [
-            { question: 'How long does brand strategy take?', answer: '4-8 weeks depending on scope and research depth.' },
-            { question: 'Do you work with existing brands?', answer: 'Yes, we do brand refreshes and repositioning for established brands.' },
-            { question: 'What do we get at the end?', answer: 'Complete brand strategy document, positioning, messaging, and guidelines.' },
-            { question: 'Do you implement the strategy?', answer: 'We can guide implementation or hand off to your team.' }
-          ]
-        },
         {
           slug: 'logo-brand-identity',
           name: 'Logo Design & Brand Identity',
@@ -91,46 +51,6 @@ export const creativeService: ServiceCategory = {
           ]
         },
         {
-          slug: 'marketing-collateral-design',
-          name: 'Marketing Collateral Design',
-          shortDescription: 'Print and digital materials that convert',
-          description: 'We design marketing materials that support your sales and marketing efforts. From business cards to brochures, we create collateral that reinforces your brand and drives action.',
-          image: 'https://illustrations.popsy.co/amber/newsletter.svg',
-          features: [
-            'Business Cards',
-            'Brochures & Flyers',
-            'Sales Decks',
-            'Trade Show Materials',
-            'Email Templates',
-            'Digital Ads'
-          ],
-          techStack: [
-            { category: 'Design', technologies: ['Adobe InDesign', 'Figma', 'Illustrator'] },
-            { category: 'Production', technologies: ['Adobe Acrobat', 'Print-Ready Files'] },
-            { category: 'Digital', technologies: ['HTML Email', 'Mailchimp', 'HubSpot'] },
-            { category: 'Assets', technologies: ['Stock Photos', 'Icons', 'Illustrations'] }
-          ],
-          workflow: [
-            { step: 1, title: 'Requirements', description: 'Define materials needed and specifications.' },
-            { step: 2, title: 'Design', description: 'Create designs aligned with brand.' },
-            { step: 3, title: 'Review', description: 'Collaborative review and refinement.' },
-            { step: 4, title: 'Production', description: 'Prepare print-ready or digital files.' },
-            { step: 5, title: 'Delivery', description: 'Deliver final files with guidelines.' }
-          ],
-          whyChooseUs: [
-            { title: 'Brand Consistency', description: 'Every piece reinforces your brand.', icon: '🎨' },
-            { title: 'Print Expertise', description: 'Files that print perfectly every time.', icon: '🖨️' },
-            { title: 'Fast Turnaround', description: 'Quick delivery without sacrificing quality.', icon: '⚡' },
-            { title: 'Conversion Focus', description: 'Designed to drive action.', icon: '📈' }
-          ],
-          faqs: [
-            { question: 'Do you handle printing?', answer: 'We prepare print-ready files and can recommend print vendors.' },
-            { question: 'Can you work with our existing brand?', answer: 'Yes, we work within your brand guidelines.' },
-            { question: 'What about digital versions?', answer: 'We provide both print and digital versions as needed.' },
-            { question: 'How do revisions work?', answer: 'Packages include multiple rounds of revisions.' }
-          ]
-        },
-        {
           slug: 'ui-ux-design',
           name: 'UI/UX Design for Web & Apps',
           shortDescription: 'Intuitive interfaces that users love',
@@ -169,12 +89,7 @@ export const creativeService: ServiceCategory = {
             { question: 'Do you build design systems?', answer: 'Yes, we create reusable component libraries for consistency.' },
             { question: 'How do you work with developers?', answer: 'We provide detailed specs and support during implementation.' }
           ]
-        }
-      ]
-    },
-    {
-      name: 'Graphic Design',
-      services: [
+        },
         {
           slug: 'social-media-design',
           name: 'Social Media Design',
