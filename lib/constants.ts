@@ -574,7 +574,6 @@ export const FOOTER_LINKS = {
   company: [
     { name: 'About Us', href: '/about' },
     { name: 'Case Studies', href: '/case-studies' },
-    { name: 'Careers', href: '#' },
     { name: 'Contact', href: '#contact' },
   ],
   services: [
@@ -583,11 +582,9 @@ export const FOOTER_LINKS = {
     { name: 'Creative Services', href: '/services/creative' },
     { name: 'Hire a Resource', href: '/hire-resource' },
   ],
-  resources: [
-    { name: 'Blog', href: '#' },
-    { name: 'Who We Help', href: '/who-we-help' },
-    { name: 'Documentation', href: '#' },
-    { name: 'Support', href: '#' },
+  legal: [
+    { name: 'Privacy Policy', href: '/privacy-policy' },
+    { name: 'Terms of Service', href: '/terms-of-service' },
   ],
 }
 

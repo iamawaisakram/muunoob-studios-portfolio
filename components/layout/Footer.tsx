@@ -160,10 +160,10 @@ export default function Footer() {
           </p>
 
           <div className="flex items-center gap-6 text-sm text-text-muted">
-            <a href="#" className="transition-colors duration-300 hover:text-primary">
+            <a href="/privacy-policy" className="transition-colors duration-300 hover:text-primary">
               Privacy Policy
             </a>
-            <a href="#" className="transition-colors duration-300 hover:text-primary">
+            <a href="/terms-of-service" className="transition-colors duration-300 hover:text-primary">
               Terms of Service
             </a>
           </div>

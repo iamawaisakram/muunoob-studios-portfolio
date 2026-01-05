@@ -1,11 +1,18 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { Send, Mail, Phone, CheckCircle, Loader2 } from 'lucide-react'
+import { Send, Mail, Phone, CheckCircle, Loader2, AlertCircle } from 'lucide-react'
 import SectionWrapper, { SectionHeader } from '@/components/ui/SectionWrapper'
 import Button from '@/components/ui/Button'
 import { CONTACT_INFO } from '@/lib/constants'
+
+// Input validation constants (match server-side)
+const MAX_NAME_LENGTH = 100
+const MAX_EMAIL_LENGTH = 254
+const MAX_SUBJECT_LENGTH = 200
+const MAX_MESSAGE_LENGTH = 5000
+const MIN_MESSAGE_LENGTH = 10
 
 interface FormData {
   name: string
@@ -19,6 +26,7 @@ interface FormErrors {
   email?: string
   subject?: string
   message?: string
+  general?: string
 }
 
 export default function Contact() {
@@ -31,28 +39,60 @@ export default function Contact() {
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [csrfToken, setCsrfToken] = useState<string | null>(null)
+  const [honeypot, setHoneypot] = useState('')
+
+  // Fetch CSRF token on component mount
+  const fetchCsrfToken = useCallback(async () => {
+    try {
+      const response = await fetch('/api/contact')
+      if (response.ok) {
+        const data = await response.json()
+        setCsrfToken(data.csrfToken)
+      }
+    } catch {
+      // Silently fail - form will show error when submitted without token
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchCsrfToken()
+  }, [fetchCsrfToken])
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {}
 
-    if (!formData.name.trim()) {
+    const trimmedName = formData.name.trim()
+    const trimmedEmail = formData.email.trim()
+    const trimmedSubject = formData.subject.trim()
+    const trimmedMessage = formData.message.trim()
+
+    if (!trimmedName) {
       newErrors.name = 'Name is required'
+    } else if (trimmedName.length > MAX_NAME_LENGTH) {
+      newErrors.name = `Name must be less than ${MAX_NAME_LENGTH} characters`
     }
 
-    if (!formData.email.trim()) {
+    if (!trimmedEmail) {
       newErrors.email = 'Email is required'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (trimmedEmail.length > MAX_EMAIL_LENGTH) {
+      newErrors.email = `Email must be less than ${MAX_EMAIL_LENGTH} characters`
+    } else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/.test(trimmedEmail)) {
       newErrors.email = 'Please enter a valid email'
     }
 
-    if (!formData.subject.trim()) {
+    if (!trimmedSubject) {
       newErrors.subject = 'Subject is required'
+    } else if (trimmedSubject.length > MAX_SUBJECT_LENGTH) {
+      newErrors.subject = `Subject must be less than ${MAX_SUBJECT_LENGTH} characters`
     }
 
-    if (!formData.message.trim()) {
+    if (!trimmedMessage) {
       newErrors.message = 'Message is required'
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters'
+    } else if (trimmedMessage.length < MIN_MESSAGE_LENGTH) {
+      newErrors.message = `Message must be at least ${MIN_MESSAGE_LENGTH} characters`
+    } else if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
+      newErrors.message = `Message must be less than ${MAX_MESSAGE_LENGTH} characters`
     }
 
     setErrors(newErrors)
@@ -64,7 +104,14 @@ export default function Contact() {
 
     if (!validateForm()) return
 
+    // Check if CSRF token is available
+    if (!csrfToken) {
+      setErrors({ general: 'Form security token not loaded. Please refresh the page.' })
+      return
+    }
+
     setIsSubmitting(true)
+    setErrors({})
 
     try {
       const response = await fetch('/api/contact', {
@@ -72,21 +119,40 @@ export default function Contact() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          csrfToken,
+          website: honeypot, // Honeypot field
+        }),
       })
 
+      const data = await response.json()
+
       if (!response.ok) {
-        throw new Error('Failed to send message')
+        // Handle rate limiting
+        if (response.status === 429) {
+          setErrors({ general: 'Too many requests. Please wait a moment and try again.' })
+          return
+        }
+        // Handle CSRF error
+        if (response.status === 403) {
+          setErrors({ general: data.error || 'Session expired. Please refresh the page.' })
+          fetchCsrfToken() // Refresh token
+          return
+        }
+        throw new Error(data.error || 'Failed to send message')
       }
 
       setIsSubmitted(true)
       setFormData({ name: '', email: '', subject: '', message: '' })
+      setHoneypot('')
+      fetchCsrfToken() // Get fresh token for next submission
 
       // Reset success message after 5 seconds
       setTimeout(() => setIsSubmitted(false), 5000)
     } catch (error) {
-      console.error('Contact form error:', error)
-      // You could add error state handling here
+      const errorMessage = error instanceof Error ? error.message : 'Failed to send message'
+      setErrors({ general: errorMessage })
     } finally {
       setIsSubmitting(false)
     }
@@ -157,6 +223,28 @@ export default function Contact() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* General error message */}
+                {errors.general && (
+                  <div className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
+                    <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                    <p className="text-sm">{errors.general}</p>
+                  </div>
+                )}
+
+                {/* Honeypot field - hidden from users, catches bots */}
+                <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <div className="grid gap-6 md:grid-cols-2">
                   {/* Name */}
                   <div>
@@ -169,6 +257,7 @@ export default function Contact() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
+                      maxLength={MAX_NAME_LENGTH}
                       className={`input-light ${errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500/10' : ''}`}
                       placeholder="John Doe"
                     />
@@ -186,6 +275,7 @@ export default function Contact() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      maxLength={MAX_EMAIL_LENGTH}
                       className={`input-light ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500/10' : ''}`}
                       placeholder="john@example.com"
                     />
@@ -204,6 +294,7 @@ export default function Contact() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
+                    maxLength={MAX_SUBJECT_LENGTH}
                     className={`input-light ${errors.subject ? 'border-red-500 focus:border-red-500 focus:ring-red-500/10' : ''}`}
                     placeholder="How can we help?"
                   />
@@ -221,6 +312,7 @@ export default function Contact() {
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
+                    maxLength={MAX_MESSAGE_LENGTH}
                     className={`input-light resize-none ${errors.message ? 'border-red-500 focus:border-red-500 focus:ring-red-500/10' : ''}`}
                     placeholder="Tell us about your project..."
                   />

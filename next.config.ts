@@ -38,15 +38,17 @@ const securityHeaders = [
     key: 'Content-Security-Policy',
     value: `
       default-src 'self';
-      script-src 'self' 'unsafe-eval' 'unsafe-inline';
+      script-src 'self' 'unsafe-inline';
       style-src 'self' 'unsafe-inline';
-      img-src 'self' blob: data: https:;
+      img-src 'self' blob: data: https://images.unsplash.com https://img.youtube.com https://i.ytimg.com;
       font-src 'self' data:;
-      connect-src 'self' https:;
+      connect-src 'self';
       frame-src 'self' https://www.youtube.com https://youtube.com;
-      frame-ancestors 'self';
+      frame-ancestors 'none';
       base-uri 'self';
       form-action 'self';
+      upgrade-insecure-requests;
+      block-all-mixed-content;
     `
       .replaceAll(/\s{2,}/g, ' ')
       .trim(),
