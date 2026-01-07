@@ -291,7 +291,7 @@ export const DETAILED_CASE_STUDIES: CaseStudy[] = [
     client: 'Gulistan-e-Kutub',
     duration: '3 months',
     year: '2024',
-    liveUrl: 'https://dusty-pages.vercel.app/book-store',
+    liveUrl: 'https://www.gulistanekutub.com',
     overview: 'Gulistan-e-Kutub (Garden of Books) is a modern online bookstore platform designed to serve book lovers in Pakistan and beyond. The platform features an extensive catalog of books across 15+ categories, from Architecture and Philosophy to Urdu literature and Self-Improvement. With an elegant, user-friendly interface and robust e-commerce functionality, the platform makes discovering and purchasing books a delightful experience.',
     challenge: 'The client needed a modern e-commerce platform that could showcase their extensive book inventory while providing an intuitive browsing experience. The challenge was to create a system that could handle thousands of book listings with efficient categorization, search functionality, and a seamless checkout process, all while maintaining fast load times and a visually appealing design.',
     solution: 'We built a performant Next.js application with server-side rendering for optimal SEO and fast page loads. The platform features a sophisticated category system with 15+ genres, smart sorting options (alphabetical, price-based), and a streamlined shopping cart. We implemented a clean, bookstore-inspired design with a warm brown/burgundy color palette that evokes the feeling of a traditional bookshop.',
