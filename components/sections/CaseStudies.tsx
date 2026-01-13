@@ -16,15 +16,13 @@ import {
 const allCaseStudies = getCaseStudiesForListing()
 
 export default function CaseStudies() {
-  const [activeTab, setActiveTab] = useState<ServiceCategory | 'all'>('all')
+  const [activeTab, setActiveTab] = useState<ServiceCategory>('development')
 
   // For non-creative tabs, filter case studies
   const filteredStudies =
-    activeTab === 'all'
-      ? allCaseStudies.slice(0, 6)
-      : activeTab === 'creative'
-        ? [] // Creative tab uses CreativePortfolio component
-        : allCaseStudies.filter((s) => s.serviceCategory === activeTab).slice(0, 6)
+    activeTab === 'creative'
+      ? [] // Creative tab uses CreativePortfolio component
+      : allCaseStudies.filter((s) => s.serviceCategory === activeTab).slice(0, 6)
 
   return (
     <SectionWrapper id="case-studies" className="bg-light">
@@ -39,18 +37,6 @@ export default function CaseStudies() {
 
       {/* Tabs */}
       <div className="mb-10 flex flex-wrap justify-center gap-3">
-        <motion.button
-          onClick={() => setActiveTab('all')}
-          className={`rounded-full px-5 py-2.5 text-sm font-medium transition-all ${
-            activeTab === 'all'
-              ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-green'
-              : 'bg-light-200 text-text-secondary hover:bg-primary/10 hover:text-primary'
-          }`}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          All
-        </motion.button>
         {SERVICE_CATEGORY_TABS.map((tab) => (
           <motion.button
             key={tab.id}

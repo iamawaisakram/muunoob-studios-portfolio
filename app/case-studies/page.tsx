@@ -17,12 +17,11 @@ const ITEMS_PER_PAGE = 10
 const allCaseStudies = getCaseStudiesForListing()
 
 export default function CaseStudiesPage() {
-  const [activeTab, setActiveTab] = useState<ServiceCategory | 'all'>('all')
+  const [activeTab, setActiveTab] = useState<ServiceCategory>('development')
   const [currentPage, setCurrentPage] = useState(1)
 
   const filteredStudies = useMemo(() => {
     if (activeTab === 'creative') return [] // Creative uses CreativePortfolio
-    if (activeTab === 'all') return allCaseStudies
     return allCaseStudies.filter((study) => study.serviceCategory === activeTab)
   }, [activeTab])
 
@@ -32,7 +31,7 @@ export default function CaseStudiesPage() {
     currentPage * ITEMS_PER_PAGE
   )
 
-  const handleTabChange = (tab: ServiceCategory | 'all') => {
+  const handleTabChange = (tab: ServiceCategory) => {
     setActiveTab(tab)
     setCurrentPage(1)
   }
@@ -81,19 +80,6 @@ export default function CaseStudiesPage() {
       <section className="py-6 sticky top-16 z-30 bg-gradient-to-r from-light via-white to-light border-b border-light-300 shadow-soft-sm backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex items-center justify-center gap-3 flex-wrap">
-            <motion.button
-              onClick={() => handleTabChange('all')}
-              className={cn(
-                'px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border',
-                activeTab === 'all'
-                  ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-green border-transparent'
-                  : 'bg-white text-text-secondary border-light-300 hover:border-primary hover:text-primary hover:shadow-soft-sm'
-              )}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              All Projects
-            </motion.button>
             {SERVICE_CATEGORY_TABS.map((tab) => (
               <motion.button
                 key={tab.id}
