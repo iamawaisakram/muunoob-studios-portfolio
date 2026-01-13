@@ -117,14 +117,13 @@ function MarqueeText({ children, direction = 'left' }: { children: React.ReactNo
 // Creative stats component
 function CreativeStats() {
   const stats = [
-    { value: '500+', label: 'Projects Completed', icon: <Layers className="w-6 h-6" /> },
+    { value: '150+', label: 'Projects Completed', icon: <Layers className="w-6 h-6" /> },
     { value: '98%', label: 'Client Satisfaction', icon: <Heart className="w-6 h-6" /> },
-    { value: '15+', label: 'Awards Won', icon: <Award className="w-6 h-6" /> },
     { value: '50+', label: 'Happy Clients', icon: <Star className="w-6 h-6" /> },
   ]
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div className="grid grid-cols-3 gap-6">
       {stats.map((stat, index) => (
         <motion.div
           key={stat.label}
@@ -169,16 +168,16 @@ export default function CreativeServicesPage() {
       services: ['Logo Design', 'Brand Guidelines', 'Visual Identity', 'Brand Strategy'],
     },
     {
-      icon: <Camera className="w-8 h-8" />,
-      title: 'Photography',
-      description: 'Stunning visuals that tell your story and captivate viewers',
-      services: ['Product Photography', 'Lifestyle Shoots', 'Event Coverage', 'Photo Editing'],
-    },
-    {
       icon: <Video className="w-8 h-8" />,
-      title: 'Video Production',
+      title: 'Post Production',
       description: 'Engaging video content that brings your vision to life',
       services: ['Commercial Videos', 'Motion Graphics', 'Animation', 'Video Editing'],
+    },
+    {
+      icon: <Camera className="w-8 h-8" />,
+      title: 'Photo Editing',
+      description: 'Transform your photos with professional editing and enhancement',
+      services: ['Photo Retouching', 'Image Manipulation', 'Background Editing', 'Special Effects'],
     },
     {
       icon: <PenTool className="w-8 h-8" />,
@@ -297,8 +296,8 @@ export default function CreativeServicesPage() {
                     transition={{ duration: 3, repeat: Infinity }}
                   >
                     <div className="flex items-center gap-2">
-                      <Award className="w-6 h-6 text-creative" />
-                      <span className="font-bold text-creative">Award Winning</span>
+                      <Sparkles className="w-6 h-6 text-creative" />
+                      <span className="font-bold text-creative">Creative Excellence</span>
                     </div>
                   </motion.div>
                 </div>

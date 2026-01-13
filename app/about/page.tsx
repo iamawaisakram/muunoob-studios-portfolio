@@ -20,7 +20,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { Navbar, Footer } from '@/components/layout'
-import { ABOUT_CONTENT, TEAM_MEMBERS, COMPANY_NAME } from '@/lib/constants'
+import { ABOUT_CONTENT, COMPANY_NAME } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
 // Animated counter component
@@ -77,17 +77,17 @@ const coreValues = [
 // Service areas for visual display
 const serviceAreas = [
   { icon: Code2, label: 'Development', color: 'from-primary to-secondary' },
-  { icon: BarChart3, label: 'Analytics', color: 'from-analytics to-analyticsSecondary' },
-  { icon: Palette, label: 'Creative', color: 'from-creative to-creativeSecondary' },
+  { icon: BarChart3, label: 'Analytics', color: 'from-analytics to-analytics-secondary' },
+  { icon: Palette, label: 'Creative', color: 'from-creative to-creative-secondary' },
 ]
 
 export default function AboutPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-light">
+    <main className="relative min-h-screen bg-light">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-light via-light-200 to-mint/20 overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-br from-light via-light-200 to-mint/20">
         {/* Decorative elements */}
         <div className="absolute -right-40 top-20 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
         <div className="absolute -left-40 bottom-20 h-80 w-80 rounded-full bg-mint/30 blur-3xl" />
@@ -96,8 +96,8 @@ export default function AboutPage() {
         {/* Dot pattern */}
         <div className="absolute inset-0 soft-dots opacity-50" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 overflow-visible">
+          <div className="grid lg:grid-cols-2 gap-12 items-center overflow-visible">
             {/* Left content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -144,14 +144,14 @@ export default function AboutPage() {
 
             {/* Right - Visual element */}
             <motion.div
-              className="relative"
+              className="relative px-8 overflow-visible"
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               {/* Main card with logo */}
-              <div className="relative bg-white rounded-3xl shadow-2xl p-8 border border-light-300">
-                <div className="flex flex-col items-center text-center">
+              <div className="relative bg-white rounded-3xl shadow-2xl p-8 pb-10 border border-light-300 overflow-visible">
+                <div className="flex flex-col items-center text-center w-full">
                   <motion.div
                     className="w-32 h-32 mb-6 relative"
                     animate={{ rotate: [0, 5, -5, 0] }}
@@ -172,12 +172,12 @@ export default function AboutPage() {
                   </p>
 
                   {/* Service pills */}
-                  <div className="flex flex-wrap justify-center gap-3">
+                  <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 relative z-10 w-full">
                     {serviceAreas.map((area, index) => (
                       <motion.div
                         key={area.label}
                         className={cn(
-                          "flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r text-white text-sm font-medium",
+                          "flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r text-white text-sm font-medium whitespace-nowrap",
                           area.color
                         )}
                         initial={{ opacity: 0, scale: 0.8 }}
@@ -190,30 +190,30 @@ export default function AboutPage() {
                     ))}
                   </div>
                 </div>
-
-                {/* Floating badges */}
-                <motion.div
-                  className="absolute -left-6 top-1/4 bg-white rounded-xl shadow-lg p-3 border border-light-300"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  <div className="flex items-center gap-2">
-                    <Globe className="w-5 h-5 text-primary" />
-                    <span className="text-sm font-medium">Global Reach</span>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="absolute -right-6 bottom-1/4 bg-white rounded-xl shadow-lg p-3 border border-light-300"
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                >
-                  <div className="flex items-center gap-2">
-                    <Rocket className="w-5 h-5 text-secondary" />
-                    <span className="text-sm font-medium">Fast Delivery</span>
-                  </div>
-                </motion.div>
               </div>
+
+              {/* Floating badges - positioned outside the card */}
+              <motion.div
+                className="absolute -left-4 top-1/4 bg-white rounded-xl shadow-lg p-3 border border-light-300 z-20"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <div className="flex items-center gap-2">
+                  <Globe className="w-5 h-5 text-primary" />
+                  <span className="text-sm font-medium">Global Reach</span>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="absolute -right-4 top-16 bg-white rounded-xl shadow-lg p-3 border border-light-300 z-20"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+              >
+                <div className="flex items-center gap-2">
+                  <Rocket className="w-5 h-5 text-secondary" />
+                  <span className="text-sm font-medium">Fast Delivery</span>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -370,68 +370,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20 bg-gradient-to-br from-light via-mint/20 to-light-200">
-        <div className="mx-auto max-w-7xl px-4">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="inline-block mb-4 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
-              The People Behind The Magic
-            </span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-              <span className="text-gradient">Meet Our Team</span>
-            </h2>
-            <p className="text-text-secondary max-w-2xl mx-auto">
-              Talented individuals united by a passion for creating exceptional digital experiences
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {TEAM_MEMBERS.map((member, index) => (
-              <motion.div
-                key={member.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
-              >
-                <motion.div
-                  className="bg-white rounded-2xl overflow-hidden shadow-soft border border-light-300"
-                  whileHover={{ y: -8 }}
-                >
-                  {/* Image placeholder with gradient */}
-                  <div className="aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-display text-3xl font-bold">
-                        {member.name.split(' ').map(n => n[0]).join('')}
-                      </div>
-                    </div>
-                    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors" />
-                  </div>
-
-                  <div className="p-6 text-center">
-                    <h3 className="font-display text-lg font-bold text-text-primary mb-1">
-                      {member.name}
-                    </h3>
-                    <p className="text-primary text-sm font-medium mb-3">
-                      {member.role}
-                    </p>
-                    <p className="text-text-secondary text-sm">
-                      {member.bio}
-                    </p>
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Why Choose Us Section */}
       <section className="py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4">
@@ -484,7 +422,7 @@ export default function AboutPage() {
               {/* Stats grid */}
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: '99%', label: 'Client Satisfaction' },
+                  { value: '100%', label: 'Client Satisfaction' },
                   { value: '24/7', label: 'Support Available' },
                   { value: '100%', label: 'Project Success Rate' },
                   { value: '5★', label: 'Average Rating' },

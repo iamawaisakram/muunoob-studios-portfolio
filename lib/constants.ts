@@ -33,6 +33,7 @@ export const NAV_LINKS = [
   { name: 'Case Studies', href: '/case-studies', hasDropdown: false },
   { name: 'Hire a Resource', href: '/hire-resource', hasDropdown: false },
   { name: 'Who We Help', href: '/who-we-help', hasDropdown: false },
+  { name: 'Contact', href: '/contact', hasDropdown: false },
 ]
 
 // Development Services Dropdown
@@ -574,7 +575,7 @@ export const FOOTER_LINKS = {
   company: [
     { name: 'About Us', href: '/about' },
     { name: 'Case Studies', href: '/case-studies' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '/contact' },
   ],
   services: [
     { name: 'Development', href: '/services/development' },
