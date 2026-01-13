@@ -310,7 +310,7 @@ export default function ContactPage() {
                           onChange={handleChange}
                           maxLength={MAX_NAME_LENGTH}
                           className={`input-light ${errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500/10' : ''}`}
-                          placeholder="John Doe"
+                          placeholder="Enter your name"
                         />
                         {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
                       </div>
@@ -328,7 +328,7 @@ export default function ContactPage() {
                           onChange={handleChange}
                           maxLength={MAX_EMAIL_LENGTH}
                           className={`input-light ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500/10' : ''}`}
-                          placeholder="john@example.com"
+                          placeholder="Enter your email"
                         />
                         {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
                       </div>
