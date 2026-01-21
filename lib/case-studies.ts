@@ -286,7 +286,7 @@ export const DETAILED_CASE_STUDIES: CaseStudy[] = [
     category: 'E-Commerce',
     serviceCategory: 'development',
     description: 'A comprehensive online bookstore platform offering a curated collection of books across multiple genres with seamless browsing, categorization, and shopping cart functionality.',
-    image: '/projects/gulistan-e-kutub.webp',
+    image: '/projects/gulistan-e-kutub-detail.webp',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL'],
     client: 'Gulistan-e-Kutub',
     duration: '3 months',
@@ -320,24 +320,24 @@ export const DETAILED_CASE_STUDIES: CaseStudy[] = [
     },
     gallery: [
       {
+        src: '/projects/gulistan-e-kutub.webp',
+        alt: 'Gulistan-e-Kutub Landing Page',
+        caption: 'Welcome page - Where Books Bloom',
+      },
+      {
         src: '/projects/gulistan-e-kutub-home.webp',
         alt: 'Gulistan-e-Kutub Homepage',
-        caption: 'Homepage featuring Best Sellers and category navigation',
+        caption: 'Premium Collection featuring Literary Classics',
       },
       {
         src: '/projects/gulistan-e-kutub-store.webp',
-        alt: 'Book Store Catalog',
-        caption: 'Full bookstore catalog with category filtering',
+        alt: 'Bestsellers Catalog',
+        caption: 'Bestsellers with category filtering and search',
       },
       {
         src: '/projects/gulistan-e-kutub-detail.webp',
         alt: 'Book Detail Page',
-        caption: 'Detailed book view with description, pricing, and Add to Cart',
-      },
-      {
-        src: '/projects/gulistan-e-kutub-cart.webp',
-        alt: 'Shopping Cart',
-        caption: 'Shopping cart with order summary and checkout functionality',
+        caption: 'Detailed book view with description and pricing',
       },
     ],
   },
