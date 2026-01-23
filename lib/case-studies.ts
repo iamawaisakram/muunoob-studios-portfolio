@@ -341,6 +341,68 @@ export const DETAILED_CASE_STUDIES: CaseStudy[] = [
       },
     ],
   },
+  {
+    id: 6,
+    slug: 'clinic-bill-pro',
+    title: 'Clinic Bill Pro',
+    category: 'Healthcare Software',
+    serviceCategory: 'development',
+    description: 'A comprehensive healthcare billing management platform that streamlines patient billing, receipt generation, and payment tracking for clinics of all sizes.',
+    image: '/projects/clinic-bill-pro-card.webp',
+    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL'],
+    client: 'Clinic Bill Pro',
+    duration: '4 months',
+    year: '2025',
+    liveUrl: 'https://clinic-bill.vercel.app',
+    overview: 'Clinic Bill Pro is a modern healthcare billing management system designed to simplify administrative workflows for medical professionals. The platform consolidates patient billing, receipt generation, and payment tracking into a single intuitive interface. Trusted by 500+ clinics, it enables healthcare providers to focus on patient care while the system handles the financial operations efficiently.',
+    challenge: 'Healthcare providers often struggle with fragmented billing systems, manual receipt generation, and difficulty tracking payments across multiple patients. The client needed a unified platform that could handle the complete billing lifecycle from patient registration through payment collection, while maintaining compliance with healthcare standards and providing clear financial visibility.',
+    solution: 'We developed a comprehensive billing management platform featuring a centralized dashboard for revenue tracking and monthly analytics, streamlined bill creation with patient information management, flexible receipt generation supporting both thermal (80mm POS) and standard (A4) formats, and real-time payment status tracking. The system integrates seamlessly with existing clinic workflows while providing actionable financial insights.',
+    features: [
+      'Intuitive admin dashboard with revenue and billing overview',
+      'Quick bill creation with patient search and auto-fill',
+      'Patient management with complete contact and medical information',
+      'Dual receipt formats: Thermal (80mm) for POS and Standard (A4) printing',
+      'Real-time payment status tracking (Pending, Paid, Overdue)',
+      'Monthly revenue analytics with comparison to previous periods',
+      'Collection rate monitoring and pending amount alerts',
+      'Quick actions for common tasks like creating bills and adding patients',
+      'Print last receipt feature for easy reprinting',
+      'Secure authentication with remember me functionality',
+    ],
+    results: [
+      { metric: 'Clinics Onboarded', value: '500+' },
+      { metric: 'Billing Time Saved', value: '60%' },
+      { metric: 'Collection Rate', value: '95%+' },
+      { metric: 'User Satisfaction', value: '4.8/5' },
+    ],
+    testimonial: {
+      quote: 'Clinic Bill Pro has transformed our billing operations. What used to take hours of manual work now happens in minutes. The thermal receipt printing feature alone has saved us significant time and improved our patient checkout experience.',
+      author: 'Dr. Ahmed Khan',
+      role: 'Medical Director, City Healthcare Clinic',
+    },
+    gallery: [
+      {
+        src: '/projects/clinic-bill-pro-hero.webp',
+        alt: 'Clinic Bill Pro Login',
+        caption: 'Clean login interface with secure authentication',
+      },
+      {
+        src: '/projects/clinic-bill-pro-dashboard.webp',
+        alt: 'Admin Dashboard',
+        caption: 'Comprehensive dashboard with revenue analytics and quick actions',
+      },
+      {
+        src: '/projects/clinic-bill-pro-create-bill.webp',
+        alt: 'Create New Bill',
+        caption: 'Streamlined bill creation with patient information management',
+      },
+      {
+        src: '/projects/clinic-bill-pro-receipt.webp',
+        alt: 'Bill Receipt Preview',
+        caption: 'Thermal and standard receipt formats with print functionality',
+      },
+    ],
+  },
 ]
 
 // Helper functions
