@@ -1,14 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Twitter, Instagram, Mail, Phone, ArrowUp } from 'lucide-react'
+import { Facebook, Linkedin, Instagram, Mail, Phone, ArrowUp } from 'lucide-react'
 import Image from 'next/image'
 import { COMPANY_NAME, CONTACT_INFO, FOOTER_LINKS } from '@/lib/constants'
 
 const socialIcons = {
-  twitter: Twitter,
+  facebook: Facebook,
   linkedin: Linkedin,
-  github: Github,
   instagram: Instagram,
 }
 

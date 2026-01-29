@@ -564,10 +564,9 @@ export const CONTACT_INFO = {
   phone: '+923328390963',
   // address: '123 Innovation Street, Tech City, TC 12345',
   social: {
-    twitter: '#',
-    linkedin: '#',
-    github: '#',
-    instagram: '#',
+    facebook: 'https://www.facebook.com/muunoobstudios/',
+    linkedin: 'https://www.linkedin.com/company/muunoobstudios/',
+    instagram: 'https://www.instagram.com/muunoobstudios/',
   },
 }
 
