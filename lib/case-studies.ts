@@ -34,6 +34,68 @@ export interface CaseStudy {
 // Detailed case studies data
 export const DETAILED_CASE_STUDIES: CaseStudy[] = [
   {
+    id: 7,
+    slug: 'propertyinn',
+    title: 'PropertyInn',
+    category: 'Real Estate',
+    serviceCategory: 'development',
+    description: 'A premium real estate sales platform showcasing authority-approved developments across Pakistan, with immersive project pages, senior advisor profiles, and lead capture for domestic and overseas investors.',
+    image: '/projects/propertyinn-card.webp',
+    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'React'],
+    client: 'PropertyInn',
+    duration: '3 months',
+    year: '2025',
+    liveUrl: 'https://www.propertyinn.com.pk',
+    overview: 'PropertyInn is an authorized real estate sales partner operating in Lahore since 1990. We built a refined, content-rich marketing website that positions three and a half decades of experience as the brand’s core differentiator. The platform presents a curated portfolio of vetted, authority-approved developments, introduces the senior advisors behind every deal, and converts serious enquiries into booked consultations — serving both Pakistani families and Non-Resident Pakistani (NRP) investors.',
+    challenge: 'In a market crowded with unverified listings and anonymous agents, the client needed a digital presence that immediately conveyed trust, longevity, and credibility. The challenge was to translate a 34-year offline reputation into a high-end web experience: showcasing flagship projects with rich detail, surfacing real human advisors instead of a faceless call centre, and capturing qualified leads with investment intent — all while remaining fast, SEO-friendly, and elegant on every device.',
+    solution: 'We designed and developed a bespoke Next.js website with a deep navy-and-gold visual identity that signals premium real estate. Each development gets a cinematic project page with hero imagery, authority-approval badges (RUDA, Bahria Town, LDA), location and developer details, and a dedicated gallery. A leadership section puts named senior advisors front and centre with direct phone and WhatsApp lines, and a multi-step consultation form qualifies investment range and project of interest. We layered in live activity tickers, an investment-insights blog, and press credibility to reinforce trust at every scroll.',
+    features: [
+      'Cinematic project showcase pages with hero imagery and authority-approval badges (RUDA, Bahria Town, LDA, CDA)',
+      'Senior advisor / leadership directory with direct phone and WhatsApp lines — no call centre',
+      'Multi-step consultation booking form capturing investment range and project of interest',
+      'Investment-insights blog covering market trends, taxation, and infrastructure',
+      'Live activity tickers and trust signals (bookings, site visits, plots reserved)',
+      'Property terminology primer and a documented five-step buying process',
+      'Press mentions and testimonials to reinforce three decades of credibility',
+      'Built for both domestic and Non-Resident Pakistani (NRP) investors',
+      'SEO-optimized, server-rendered pages for fast load times and discoverability',
+      'Fully responsive design with a premium navy-and-gold visual identity',
+    ],
+    results: [
+      { metric: 'Years Established', value: '34+' },
+      { metric: 'Active Investors', value: '250+' },
+      { metric: 'Active Projects', value: '6' },
+      { metric: 'Senior Advisors', value: '12' },
+    ],
+    testimonial: {
+      quote: 'MUUNOOB STUDIOS captured three decades of our reputation in a website that finally feels as premium as the projects we sell. Enquiries now come in pre-qualified, and clients arrive already trusting us.',
+      author: 'Director',
+      role: 'PropertyInn',
+    },
+    gallery: [
+      {
+        src: '/projects/propertyinn-portfolio.webp',
+        alt: 'Portfolio of Developments',
+        caption: 'A curated portfolio of six authority-approved developments — one standard',
+      },
+      {
+        src: '/projects/propertyinn-projects.webp',
+        alt: 'Kuwait Mall Project Page',
+        caption: 'Each development gets an immersive page with imagery, approvals, and booking CTAs',
+      },
+      {
+        src: '/projects/propertyinn-team.webp',
+        alt: 'Leadership & Advisors',
+        caption: 'Named senior advisors you can call directly — no call centre, no handoff',
+      },
+      {
+        src: '/projects/propertyinn-partnerships.webp',
+        alt: 'Partnerships, Presence & People',
+        caption: 'Three decades of presence — boardrooms, launches and ground-breakings that build trust',
+      },
+    ],
+  },
+  {
     id: 1,
     slug: 'aithentic',
     title: 'Aithentic',

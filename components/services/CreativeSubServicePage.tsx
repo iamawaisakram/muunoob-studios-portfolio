@@ -10,7 +10,6 @@ import {
   Camera,
   Video,
   PenTool,
-  Eye,
   Award,
   Star,
   Heart,
@@ -52,15 +51,8 @@ function FloatingShapes() {
   )
 }
 
-// Portfolio preview card
-function PortfolioPreview() {
-  const items = [
-    { color: 'from-creative to-creative-600', label: 'Project 1' },
-    { color: 'from-purple-500 to-pink-500', label: 'Project 2' },
-    { color: 'from-orange-500 to-red-500', label: 'Project 3' },
-    { color: 'from-blue-500 to-cyan-500', label: 'Project 4' },
-  ]
-
+// Service illustration card
+function ServiceIllustration({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="relative">
       {/* Background cards for depth */}
@@ -76,24 +68,12 @@ function PortfolioPreview() {
       />
 
       {/* Main card */}
-      <div className="relative bg-white rounded-3xl shadow-2xl p-6 border border-creative/10">
-        <div className="grid grid-cols-2 gap-4">
-          {items.map((item, index) => (
-            <motion.div
-              key={item.label}
-              className={cn(
-                "aspect-square rounded-2xl bg-gradient-to-br flex items-center justify-center text-white font-bold",
-                item.color
-              )}
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 + index * 0.1 }}
-            >
-              <Eye className="w-8 h-8 opacity-70" />
-            </motion.div>
-          ))}
-        </div>
+      <div className="relative bg-white rounded-3xl shadow-2xl p-8 border border-creative/10">
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-auto max-h-[26rem] object-contain drop-shadow-xl"
+        />
       </div>
 
       {/* Floating badge */}
@@ -191,13 +171,13 @@ export default function CreativeSubServicePage({ service, parentService }: Creat
               </div>
             </motion.div>
 
-            {/* Right - Portfolio preview */}
+            {/* Right - Service illustration */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <PortfolioPreview />
+              <ServiceIllustration src={service.image} alt={service.name} />
             </motion.div>
           </div>
         </div>
@@ -367,7 +347,7 @@ export default function CreativeSubServicePage({ service, parentService }: Creat
                     transition={{ delay: index * 0.15 }}
                     className="relative"
                   >
-                    <div className="bg-light rounded-3xl p-8 border border-creative/10 text-center relative overflow-hidden group hover:border-creative/30 transition-colors">
+                    <div className="bg-light rounded-3xl p-8 border border-creative/10 text-center relative group hover:border-creative/30 transition-colors">
                       {/* Step number badge */}
                       <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-creative to-creativeSecondary flex items-center justify-center text-white font-bold text-sm z-10 shadow-lg shadow-creative/30">
                         {step.step}
@@ -385,7 +365,7 @@ export default function CreativeSubServicePage({ service, parentService }: Creat
                       </p>
 
                       {/* Decorative gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-creative/5 via-transparent to-creativeSecondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-creative/5 via-transparent to-creativeSecondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   </motion.div>
                 )

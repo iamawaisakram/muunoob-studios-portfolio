@@ -15,7 +15,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'Business Process Analysis & Optimization',
           shortDescription: 'Streamline operations for maximum efficiency',
           description: 'We analyze your business processes to identify bottlenecks, redundancies, and opportunities for improvement. Our data-driven approach helps you optimize operations and reduce costs.',
-          image: 'https://illustrations.popsy.co/amber/analytics.svg',
+          image: '/services/illustrations/business-process-analysis.webp',
           features: [
             'Process Mapping',
             'Bottleneck Identification',
@@ -55,7 +55,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'Operations & Workflow Design',
           shortDescription: 'Design workflows that scale with your business',
           description: 'We design operational workflows that are efficient, scalable, and adaptable. From SOPs to team structures, we help you build operations that support growth.',
-          image: 'https://illustrations.popsy.co/amber/business-planning.svg',
+          image: '/services/illustrations/operations-workflow-design.webp',
           features: [
             'Workflow Design',
             'SOP Development',
@@ -95,7 +95,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'CRM Implementation & Optimization',
           shortDescription: 'Get the most from your customer relationships',
           description: 'We implement and optimize CRM systems to help you manage customer relationships effectively. From setup to automation, we ensure your CRM drives growth.',
-          image: 'https://illustrations.popsy.co/amber/customer-support.svg',
+          image: '/services/illustrations/crm-implementation.webp',
           features: [
             'CRM Selection',
             'Data Migration',
@@ -135,7 +135,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'HR & Resource Management Systems',
           shortDescription: 'Streamline your people operations',
           description: 'We implement HR systems that simplify people management. From hiring to performance reviews, we set up systems that scale with your team.',
-          image: 'https://illustrations.popsy.co/amber/teamwork.svg',
+          image: '/services/illustrations/hr-resource-management.webp',
           features: [
             'HRIS Implementation',
             'Applicant Tracking',
@@ -175,7 +175,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'Property Management Systems',
           shortDescription: 'Digitize your property operations',
           description: 'We implement property management systems that streamline operations for real estate businesses. From tenant management to maintenance tracking, we digitize your workflows.',
-          image: 'https://illustrations.popsy.co/amber/house.svg',
+          image: '/services/illustrations/property-management-systems.webp',
           features: [
             'Property Listings',
             'Tenant Management',
@@ -215,7 +215,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'Event & Booking Management Systems',
           shortDescription: 'Simplify your event and booking operations',
           description: 'We implement booking and event management systems that automate reservations, payments, and communications. Perfect for venues, services, and experiences.',
-          image: 'https://illustrations.popsy.co/amber/calendar.svg',
+          image: '/services/illustrations/event-booking-systems.webp',
           features: [
             'Online Booking',
             'Calendar Management',
@@ -255,7 +255,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'Portfolio & Investment Management Systems',
           shortDescription: 'Manage investments with clarity',
           description: 'We implement portfolio management systems for investment firms, family offices, and advisors. Track investments, generate reports, and manage client relationships.',
-          image: 'https://illustrations.popsy.co/amber/cryptocurrency.svg',
+          image: '/services/illustrations/portfolio-investment-systems.webp',
           features: [
             'Portfolio Tracking',
             'Performance Analytics',
@@ -295,7 +295,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'Digital Marketing & Content Production Systems',
           shortDescription: 'Systematize your marketing operations',
           description: 'We implement systems that streamline your marketing operations. From content calendars to campaign management, we help you market more effectively.',
-          image: 'https://illustrations.popsy.co/amber/content-creator.svg',
+          image: '/services/illustrations/digital-marketing-systems.webp',
           features: [
             'Content Calendars',
             'Campaign Management',
@@ -340,7 +340,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'RevOps Strategy & Implementation',
           shortDescription: 'Align sales, marketing, and success for growth',
           description: 'We help you implement Revenue Operations that aligns your go-to-market teams. From strategy to tech stack, we build RevOps foundations that drive predictable growth.',
-          image: 'https://illustrations.popsy.co/amber/success.svg',
+          image: '/services/illustrations/revops-strategy.webp',
           features: [
             'RevOps Strategy',
             'Process Alignment',
@@ -380,7 +380,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'AI-Powered Business Automation',
           shortDescription: 'Leverage AI to automate and enhance operations',
           description: 'We implement AI solutions that automate tasks, enhance decision-making, and create new capabilities. From chatbots to predictive analytics, we bring AI into your business.',
-          image: 'https://illustrations.popsy.co/amber/artificial-intelligence.svg',
+          image: '/services/illustrations/ai-business-automation.webp',
           features: [
             'AI Strategy',
             'Chatbots & Assistants',
@@ -420,7 +420,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'Workflow Automation (Zapier, Make, Custom)',
           shortDescription: 'Connect and automate your business tools',
           description: 'We build workflow automations that connect your tools and eliminate manual work. From simple zaps to complex custom automations, we help you work smarter.',
-          image: 'https://illustrations.popsy.co/amber/automation.svg',
+          image: '/services/illustrations/workflow-automation.webp',
           features: [
             'Process Automation',
             'Tool Integration',
@@ -460,7 +460,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'Low-Code / No-Code Development',
           shortDescription: 'Build faster with low-code platforms',
           description: 'We build applications using low-code and no-code platforms for faster time-to-market. Perfect for MVPs, internal tools, and rapid prototyping.',
-          image: 'https://illustrations.popsy.co/amber/rocket.svg',
+          image: '/services/illustrations/lowcode-nocode-development.webp',
           features: [
             'Rapid Prototyping',
             'Internal Tools',
@@ -500,7 +500,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'Custom API & System Integration',
           shortDescription: 'Connect any systems with custom integrations',
           description: 'When off-the-shelf integrations are not enough, we build custom connections between your systems. Any API, any system, seamlessly connected.',
-          image: 'https://illustrations.popsy.co/amber/network.svg',
+          image: '/services/illustrations/custom-api-integration.webp',
           features: [
             'Custom Connectors',
             'Data Transformation',
@@ -540,7 +540,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'Project Management Systems Setup',
           shortDescription: 'Set up project management that works',
           description: 'We implement project management systems that fit your teams workflow. From ClickUp to Asana, we set up systems that improve visibility and productivity.',
-          image: 'https://illustrations.popsy.co/amber/task-list.svg',
+          image: '/services/illustrations/project-management-setup.webp',
           features: [
             'Platform Setup',
             'Workflow Configuration',
@@ -580,7 +580,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'Data Analytics, Reporting & Dashboards',
           shortDescription: 'Turn data into actionable insights',
           description: 'We build dashboards and reports that give you visibility into your business. From KPI tracking to advanced analytics, we help you make data-driven decisions.',
-          image: 'https://illustrations.popsy.co/amber/chart.svg',
+          image: '/services/illustrations/data-analytics-dashboards.webp',
           features: [
             'Dashboard Design',
             'KPI Tracking',
@@ -620,7 +620,7 @@ export const businessAnalyticsService: ServiceCategory = {
           name: 'SOP Development & Team Training',
           shortDescription: 'Document and train for consistency',
           description: 'We develop standard operating procedures and training programs that ensure consistent execution. From documentation to training delivery, we help your team succeed.',
-          image: 'https://illustrations.popsy.co/amber/online-education.svg',
+          image: '/services/illustrations/sop-development-training.webp',
           features: [
             'Process Documentation',
             'SOP Creation',

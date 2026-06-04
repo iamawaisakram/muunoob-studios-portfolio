@@ -15,7 +15,7 @@ export const developmentService: ServiceCategory = {
           name: 'Website Design & Development',
           shortDescription: 'Custom websites that captivate and convert',
           description: 'We create stunning, responsive websites that not only look beautiful but also deliver exceptional user experiences. From corporate sites to complex web portals, we build digital presences that represent your brand and drive results.',
-          image: 'https://illustrations.popsy.co/amber/web-design.svg',
+          image: '/services/illustrations/website-design-development.webp',
           features: [
             'Responsive Design',
             'SEO Optimization',
@@ -55,7 +55,7 @@ export const developmentService: ServiceCategory = {
           name: 'Web Application Development',
           shortDescription: 'Powerful web apps that solve real problems',
           description: 'We build robust, scalable web applications that streamline operations and enhance productivity. From internal tools to customer-facing platforms, our solutions are designed to grow with your business.',
-          image: 'https://illustrations.popsy.co/amber/app-launch.svg',
+          image: '/services/illustrations/web-application-development.webp',
           features: [
             'Custom Business Logic',
             'Real-time Features',
@@ -95,7 +95,7 @@ export const developmentService: ServiceCategory = {
           name: 'Mobile App Development (iOS & Android)',
           shortDescription: 'Native and cross-platform mobile experiences',
           description: 'We create beautiful, high-performance mobile applications for iOS and Android. Whether you need a native app or a cross-platform solution, we deliver mobile experiences that users love.',
-          image: 'https://illustrations.popsy.co/amber/man-on-phone.svg',
+          image: '/services/illustrations/mobile-app-development.webp',
           features: [
             'Native iOS & Android',
             'Cross-Platform Development',
@@ -135,7 +135,7 @@ export const developmentService: ServiceCategory = {
           name: 'SaaS Product Development',
           shortDescription: 'Build your next subscription-based software product',
           description: 'We help startups and enterprises build successful SaaS products. From MVP to full-scale platforms, we create multi-tenant solutions with robust billing, user management, and analytics.',
-          image: 'https://illustrations.popsy.co/amber/remote-work.svg',
+          image: '/services/illustrations/saas-product-development.webp',
           features: [
             'Multi-tenant Architecture',
             'Subscription Billing',
@@ -175,7 +175,7 @@ export const developmentService: ServiceCategory = {
           name: 'Custom Software Development',
           shortDescription: 'Tailored solutions for unique business challenges',
           description: 'When off-the-shelf solutions fall short, we build custom software that perfectly fits your requirements. From enterprise systems to specialized tools, we create solutions that give you a competitive edge.',
-          image: 'https://illustrations.popsy.co/amber/work-party.svg',
+          image: '/services/illustrations/custom-software-development.webp',
           features: [
             'Business Process Automation',
             'Legacy System Modernization',
@@ -220,7 +220,7 @@ export const developmentService: ServiceCategory = {
           name: 'Shopify Development & Optimization',
           shortDescription: 'Custom Shopify stores that drive sales',
           description: 'We build and optimize Shopify stores that convert browsers into buyers. From custom themes to app development, we help you create a world-class e-commerce experience.',
-          image: 'https://illustrations.popsy.co/amber/online-shopping.svg',
+          image: '/services/illustrations/shopify-development.webp',
           features: [
             'Custom Theme Development',
             'Shopify Plus Solutions',
@@ -260,7 +260,7 @@ export const developmentService: ServiceCategory = {
           name: 'WooCommerce Development',
           shortDescription: 'Flexible WordPress e-commerce solutions',
           description: 'We create powerful WooCommerce stores that leverage the flexibility of WordPress. Perfect for businesses that need complete control over their e-commerce platform.',
-          image: 'https://illustrations.popsy.co/amber/product-launch.svg',
+          image: '/services/illustrations/woocommerce-development.webp',
           features: [
             'Custom Theme Development',
             'Plugin Development',
@@ -300,7 +300,7 @@ export const developmentService: ServiceCategory = {
           name: 'Custom E-Commerce Solutions',
           shortDescription: 'Bespoke e-commerce platforms for unique needs',
           description: 'When standard platforms do not meet your requirements, we build custom e-commerce solutions. Perfect for complex B2B commerce, marketplaces, and unique business models.',
-          image: 'https://illustrations.popsy.co/amber/shaking-hands.svg',
+          image: '/services/illustrations/custom-ecommerce-solutions.webp',
           features: [
             'Multi-vendor Marketplaces',
             'B2B Commerce',
@@ -340,7 +340,7 @@ export const developmentService: ServiceCategory = {
           name: 'Payment Gateway Integration',
           shortDescription: 'Seamless payment processing for your platform',
           description: 'We integrate payment gateways that work seamlessly with your platform. From simple checkouts to complex subscription billing, we ensure secure, reliable payments.',
-          image: 'https://illustrations.popsy.co/amber/bitcoin.svg',
+          image: '/services/illustrations/payment-gateway-integration.webp',
           features: [
             'Multiple Payment Methods',
             'Subscription Billing',
@@ -385,7 +385,7 @@ export const developmentService: ServiceCategory = {
           name: 'API Development & Integration',
           shortDescription: 'Connect your systems with robust APIs',
           description: 'We design and build APIs that power your applications and enable seamless integrations. RESTful or GraphQL, we create APIs that are secure, documented, and developer-friendly.',
-          image: 'https://illustrations.popsy.co/amber/data-sync.svg',
+          image: '/services/illustrations/api-development-integration.webp',
           features: [
             'RESTful API Design',
             'GraphQL APIs',
@@ -425,7 +425,7 @@ export const developmentService: ServiceCategory = {
           name: 'Third-Party System Integrations',
           shortDescription: 'Connect all your business tools seamlessly',
           description: 'We integrate your systems to create a unified technology ecosystem. From CRMs to ERPs, we ensure your tools work together harmoniously to streamline operations.',
-          image: 'https://illustrations.popsy.co/amber/puzzle.svg',
+          image: '/services/illustrations/third-party-integrations.webp',
           features: [
             'CRM Integrations',
             'ERP Connections',
@@ -465,7 +465,7 @@ export const developmentService: ServiceCategory = {
           name: 'Database Architecture & Optimization',
           shortDescription: 'Data foundations that scale with your business',
           description: 'We design and optimize databases that handle your data efficiently. From schema design to performance tuning, we ensure your data layer supports your application needs.',
-          image: 'https://illustrations.popsy.co/amber/data-analytics.svg',
+          image: '/services/illustrations/database-architecture.webp',
           features: [
             'Schema Design',
             'Performance Optimization',
@@ -505,7 +505,7 @@ export const developmentService: ServiceCategory = {
           name: 'Cloud Deployment & Hosting Setup',
           shortDescription: 'Reliable cloud infrastructure for your applications',
           description: 'We set up cloud infrastructure that is secure, scalable, and cost-effective. From simple deployments to complex multi-region architectures, we handle your hosting needs.',
-          image: 'https://illustrations.popsy.co/amber/engineer.svg',
+          image: '/services/illustrations/cloud-deployment-hosting.webp',
           features: [
             'Cloud Architecture',
             'CI/CD Pipelines',
@@ -550,7 +550,7 @@ export const developmentService: ServiceCategory = {
           name: 'Website Speed Optimization',
           shortDescription: 'Faster websites that convert better',
           description: 'We optimize your website for maximum speed and performance. Faster sites rank higher, convert better, and provide superior user experiences.',
-          image: 'https://illustrations.popsy.co/amber/fast-car.svg',
+          image: '/services/illustrations/website-speed-optimization.webp',
           features: [
             'Core Web Vitals',
             'Image Optimization',
@@ -590,7 +590,7 @@ export const developmentService: ServiceCategory = {
           name: 'Security Hardening & Data Protection',
           shortDescription: 'Protect your application and user data',
           description: 'We secure your applications against threats with comprehensive security hardening. From penetration testing to compliance, we protect your business and customers.',
-          image: 'https://illustrations.popsy.co/amber/shield.svg',
+          image: '/services/illustrations/security-hardening.webp',
           features: [
             'Security Audits',
             'Penetration Testing',
@@ -630,7 +630,7 @@ export const developmentService: ServiceCategory = {
           name: 'Maintenance & Support',
           shortDescription: 'Keep your systems running smoothly',
           description: 'We provide ongoing maintenance and support to keep your applications secure, updated, and running optimally. Focus on your business while we handle the technical upkeep.',
-          image: 'https://illustrations.popsy.co/amber/pair-programming.svg',
+          image: '/services/illustrations/maintenance-support.webp',
           features: [
             'Proactive Monitoring',
             'Regular Updates',
@@ -670,7 +670,7 @@ export const developmentService: ServiceCategory = {
           name: 'Scalability & Performance Consulting',
           shortDescription: 'Prepare your systems for growth',
           description: 'We help you prepare for scale with architecture reviews, performance tuning, and strategic recommendations. Be ready when your business takes off.',
-          image: 'https://illustrations.popsy.co/amber/building-blocks.svg',
+          image: '/services/illustrations/scalability-consulting.webp',
           features: [
             'Architecture Review',
             'Performance Profiling',

@@ -193,54 +193,21 @@ export default function AnalyticsSubServicePage({ service, parentService }: Anal
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl border border-slate-700 p-6 shadow-2xl">
-                {/* Dashboard header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
-                  </div>
-                  <span className="text-xs text-slate-500">{service.name} Dashboard</span>
+              <div className="bg-slate-800/50 backdrop-blur-xl rounded-2xl border border-slate-700 p-4 shadow-2xl">
+                {/* Window header */}
+                <div className="flex items-center gap-2 mb-4 px-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                  <div className="w-3 h-3 rounded-full bg-green-500" />
                 </div>
 
-                {/* Stats row */}
-                <div className="grid grid-cols-3 gap-4 mb-6">
-                  <div className="bg-slate-700/50 rounded-xl p-4">
-                    <div className="text-xs text-slate-400 mb-1">Accuracy</div>
-                    <div className="text-2xl font-bold text-white">98.5%</div>
-                    <div className="flex items-center gap-1 mt-1">
-                      <TrendingUp size={12} className="text-green-400" />
-                      <span className="text-xs text-green-400">+2.3%</span>
-                    </div>
-                  </div>
-                  <div className="bg-slate-700/50 rounded-xl p-4">
-                    <div className="text-xs text-slate-400 mb-1">Insights</div>
-                    <div className="text-2xl font-bold text-white">1,247</div>
-                    <div className="flex items-center gap-1 mt-1">
-                      <TrendingUp size={12} className="text-green-400" />
-                      <span className="text-xs text-green-400">+15%</span>
-                    </div>
-                  </div>
-                  <div className="bg-slate-700/50 rounded-xl p-4">
-                    <div className="text-xs text-slate-400 mb-1">ROI</div>
-                    <div className="text-2xl font-bold text-white">340%</div>
-                    <div className="flex items-center gap-1 mt-1">
-                      <TrendingUp size={12} className="text-green-400" />
-                      <span className="text-xs text-green-400">+28%</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Chart area */}
-                <div className="bg-slate-700/30 rounded-xl p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm text-slate-300">Performance Overview</span>
-                    <div className="flex gap-2">
-                      <span className="px-2 py-1 rounded bg-analytics/20 text-analytics text-xs">Weekly</span>
-                    </div>
-                  </div>
-                  <MiniChart type="bar" />
+                {/* Illustration on a clean panel so it reads on the dark hero */}
+                <div className="rounded-xl bg-white/95 p-6">
+                  <img
+                    src={service.image}
+                    alt={service.name}
+                    className="w-full h-auto max-h-[24rem] object-contain"
+                  />
                 </div>
               </div>
 

@@ -15,7 +15,7 @@ export const creativeService: ServiceCategory = {
           name: 'Logo Design & Brand Identity',
           shortDescription: 'Create a memorable visual identity',
           description: 'We design logos and visual identities that capture your brand essence and stand out in the market. From concept to complete brand system, we create visual assets that make an impact.',
-          image: 'https://illustrations.popsy.co/amber/creative-work.svg',
+          image: '/services/illustrations/logo-brand-identity.webp',
           features: [
             'Logo Design',
             'Color Palette',
@@ -55,7 +55,7 @@ export const creativeService: ServiceCategory = {
           name: 'UI/UX Design for Web & Apps',
           shortDescription: 'Intuitive interfaces that users love',
           description: 'We design digital experiences that are beautiful and intuitive. From user research to high-fidelity designs, we create interfaces that delight users and achieve business goals.',
-          image: 'https://illustrations.popsy.co/amber/app-design.svg',
+          image: '/services/illustrations/ui-ux-design.webp',
           features: [
             'User Research',
             'Wireframing',
@@ -95,7 +95,7 @@ export const creativeService: ServiceCategory = {
           name: 'Social Media Design',
           shortDescription: 'Stand out in the social feed',
           description: 'We create scroll-stopping social media graphics that engage your audience and reinforce your brand. From templates to campaigns, we help you own social.',
-          image: 'https://illustrations.popsy.co/amber/social-media.svg',
+          image: '/services/illustrations/social-media-design.webp',
           features: [
             'Post Templates',
             'Story Templates',
@@ -135,7 +135,7 @@ export const creativeService: ServiceCategory = {
           name: 'Ad Creatives & Campaign Assets',
           shortDescription: 'Ads that convert clicks to customers',
           description: 'We design high-converting ad creatives for digital campaigns. From static images to animated banners, we create assets that drive results across all platforms.',
-          image: 'https://illustrations.popsy.co/amber/marketing.svg',
+          image: '/services/illustrations/ad-creatives-campaign-assets.webp',
           features: [
             'Display Ads',
             'Social Ads',
@@ -175,7 +175,7 @@ export const creativeService: ServiceCategory = {
           name: 'Pitch Decks & Business Presentations',
           shortDescription: 'Presentations that win deals',
           description: 'We design compelling pitch decks and presentations that help you tell your story and win business. From investor decks to sales presentations, we make you look your best.',
-          image: 'https://illustrations.popsy.co/amber/presentation.svg',
+          image: '/services/illustrations/pitch-decks-presentations.webp',
           features: [
             'Investor Pitch Decks',
             'Sales Presentations',
@@ -215,7 +215,7 @@ export const creativeService: ServiceCategory = {
           name: 'Print & Packaging Design',
           shortDescription: 'Physical designs that make an impression',
           description: 'We design print materials and packaging that stand out on shelves and in hands. From product packaging to trade show displays, we create physical touchpoints that impress.',
-          image: 'https://illustrations.popsy.co/amber/gift.svg',
+          image: '/services/illustrations/print-packaging-design.webp',
           features: [
             'Product Packaging',
             'Label Design',
@@ -260,7 +260,7 @@ export const creativeService: ServiceCategory = {
           name: 'Video Editing (Long-Form & Short-Form)',
           shortDescription: 'Professional video editing that engages',
           description: 'We edit videos that captivate your audience. From YouTube content to corporate videos, we bring your footage to life with professional editing, graphics, and sound design.',
-          image: 'https://illustrations.popsy.co/amber/video-editing.svg',
+          image: '/services/illustrations/video-editing-long-short.webp',
           features: [
             'YouTube Videos',
             'Corporate Videos',
@@ -300,7 +300,7 @@ export const creativeService: ServiceCategory = {
           name: 'Podcast Editing & Production',
           shortDescription: 'Professional podcast production',
           description: 'We handle podcast post-production so you can focus on content. From audio editing to show notes, we deliver polished episodes ready for publishing.',
-          image: 'https://illustrations.popsy.co/amber/headphones.svg',
+          image: '/services/illustrations/podcast-editing-production.webp',
           features: [
             'Audio Editing',
             'Noise Reduction',
@@ -340,7 +340,7 @@ export const creativeService: ServiceCategory = {
           name: 'Social Media Reels & Shorts',
           shortDescription: 'Viral-worthy short-form content',
           description: 'We create engaging short-form videos optimized for TikTok, Reels, and Shorts. From repurposing long content to original shorts, we help you win attention.',
-          image: 'https://illustrations.popsy.co/amber/clip.svg',
+          image: '/services/illustrations/social-media-reels-shorts.webp',
           features: [
             'TikTok Videos',
             'Instagram Reels',
@@ -380,7 +380,7 @@ export const creativeService: ServiceCategory = {
           name: 'Motion Graphics & Animations',
           shortDescription: 'Bring ideas to life with motion',
           description: 'We create motion graphics and animations that explain, engage, and entertain. From logo animations to explainer videos, we add motion to your brand.',
-          image: 'https://illustrations.popsy.co/amber/animation.svg',
+          image: '/services/illustrations/motion-graphics-animations.webp',
           features: [
             'Logo Animations',
             'Explainer Videos',
@@ -420,7 +420,7 @@ export const creativeService: ServiceCategory = {
           name: 'YouTube & Content-Driven Video Editing',
           shortDescription: 'Editing that grows YouTube channels',
           description: 'We specialize in YouTube video editing that maximizes watch time and engagement. From thumbnails to retention-optimized edits, we help creators grow.',
-          image: 'https://illustrations.popsy.co/amber/video-call.svg',
+          image: '/services/illustrations/youtube-content-video-editing.webp',
           features: [
             'YouTube Editing',
             'Thumbnail Design',
