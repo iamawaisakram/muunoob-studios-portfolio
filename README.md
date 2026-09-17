@@ -1,4 +1,4 @@
-# [Your Company Name] - Portfolio Website
+# Muunoob Studios - Portfolio Website
 
 A highly advanced, futuristic company portfolio website built with Next.js 15, Three.js, and Tailwind CSS. Features stunning 3D particle effects, smooth animations, and a fully responsive design optimized for Vercel deployment.
 
